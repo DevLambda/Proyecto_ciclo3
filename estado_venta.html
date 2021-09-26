@@ -10,7 +10,7 @@
 <body>
     <header>
         <ul class="Header">
-            <span>DevLambda</span>
+            <li id="logo">DevLambda</li>
             <li class="Modulos">Gestión de ventas</li>
             <li class="Modulos">Gestión de productos</li>
             <li class="Modulos">Gestión de usuarios</li>
@@ -19,7 +19,7 @@
     </header>
     
     <main>
-        <h1>Tabla de Ventas Realizadas</h1>
+        <h1>Ventas Realizadas</h1>
         <span id="textocorto">Consulta el histórico de ventas, actualiza el estado de estas y/o edita la información que requieras. Lo único que no podrás editar es el ID de venta.</span>
         
         <ul class="fitros">
@@ -55,16 +55,73 @@
             </div>
         </ul>
 
-            <!-- <h5>Información de venta</h5>
-                    <span class="">Producto</span>
-                    <span class="">Cantidad</span>
-                    <span class="">Nombre cliente</span>
-                    <span class="">Documento cliente</span>
-                    <span class="">Fecha Compra</span>
-                    <span class="">Fecha Pago</span> 
-            <h5>Datos Vendedor</h5>
-                    <span class="">Nombre Vendendor</span>
-                    <span class="">Documento vendedor</span>           -->    
+
+        <div class="tablaVentas">
+            <div class="tablaVentasCampos">
+                <ul>
+                    <li>
+                        <div class="campos">
+                            <div class="idVenta">
+                                <span>ID VENTA</span>
+                            </div>
+                            <div class="fechaVenta">
+                                <span>FECHA VENTA</span>
+                            </div>
+                            <div class="fechaPago">
+                                <span>FECHA PAGO</span>
+                            </div>
+                            <div class="estadoVenta">
+                                <span>ESTADO VENTA</span>
+                            </div>
+                            <div class="idCliente">
+                                <span>ID CLIENTE</span>
+                            </div>
+                            <div class="cliente">
+                                <span>NOMBRE CLIENTE</span>
+                            </div>
+                            <div class="valorTotal">
+                                <span>VALOR TOTAL</span>
+                            </div>
+                            <div class="vendedor">
+                                <span>ID VENDEDOR</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="tablaVentasRegistros">
+                <ul>
+                    <li>
+                        <div class="campos">
+                            <div class="idVenta">
+                                <span>V001</span>
+                            </div>
+                            <div class="fechaVenta">
+                                 <span>26/09/2021</span>
+                            </div>
+                            <div class="fechaPago">
+                                <span>27/09/2021</span>
+                            </div>
+                            <div class="estadoVenta">
+                                <span class="entregada">ENTREGADA</span>
+                            </div>
+                            <div class="idCliente">
+                                <span>C001</span>
+                            </div>
+                            <div class="cliente">
+                                <span>LAURA MARCELA ROJAS DIAZ</span>
+                            </div>
+                            <div class="valorTotal">
+                                <span>$100.000</span>
+                            </div>
+                            <div class="vendedor">
+                                <span>1013681</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </main>
     <footer></footer>
 </body>

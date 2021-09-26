@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;400;700&display=swap');
 
+*{
+  font-family: 'Be Vietnam Pro', sans-serif; 
+}
 body{
   margin: 0px;
 }
@@ -28,7 +31,6 @@ li{
   padding: 15px;
   color: white;
   align-content:center;
-  font-family: 'Be Vietnam Pro', sans-serif; 
   font-weight:700;
 }
 
@@ -42,10 +44,8 @@ li{
 text-decoration-line: underline;
 }
 
-span{
+#logo{
   font-size: 40px;
-  opacity: 1;
-  cursor: pointer;
 }
 
 .botonSalir{
@@ -53,7 +53,6 @@ span{
   color: #FFFFFF;
   border-radius: 10px;
   opacity: 1;
-  font-family: 'Be Vietnam Pro', sans-serif;
   padding: 5px;
   background-color: #401081;
   height: 40px; 
@@ -65,7 +64,6 @@ span{
 
 h1{
   font-size: 25px;
-  font-family: 'Be Vietnam Pro', sans-serif;
   color: #401081;
   letter-spacing: -0.2px;
   margin-left: 5%;
@@ -75,7 +73,6 @@ h1{
 
 .nombreFiltros{
   font-size: 15px;
-  font-family: 'Be Vietnam Pro', sans-serif;
   color: #401081;
   cursor: auto;
   padding: 5px;
@@ -85,8 +82,6 @@ h1{
 
 #textocorto{
   font-size: 13px;
-  font-family: 'Be Vietnam Pro', sans-serif;
-  font-style: normal;
   color: #401081;
   margin-left: 5%;
   margin-top: 0.5%;
@@ -115,4 +110,80 @@ svg:hover{
 
 .buscar:focus-within{
   border:1px solid #F99225;
+}
+
+.tablaVentas{
+  width: 1200px;
+  margin: 40px auto 0;
+  cursor: auto;
+}
+
+.tablaVentas ul li .campos{
+  display: flex;
+  align-items: center;
+  padding: 0px 0; 
+  height: 40px;
+  font-weight: 400;
+  font-size: 15px;
+  background: #3f108105;
+
+}
+
+.tablaVentas ul li .campos .idVenta, .idCliente, idVendedor{
+  width: 7%;
+  padding: 0 5px;
+}
+
+.tablaVentas ul li .campos .fechaVenta, .fechaPago, .estadoVenta, .valorTotal{
+  width: 10%;
+  padding: 0 5px;
+}
+
+.tablaVentas ul li .campos .cliente{
+  width: 20%;
+  padding: 0 5px;
+}
+
+.tablaVentas ul li .campos .cliente span{
+  width: 120%;
+  padding: 0 5px;
+  /* display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+} 
+
+.tablaVentasCampos ul li .campos{
+  border-bottom: 1px solid #401081;
+} 
+
+.tablaVentasCampos{
+  height: 100px;
+  overflow: auto;
+}
+
+.tablaVentasRegistros ul li .campos{
+  border-bottom: 1px solid rgba(128, 128, 128, 0.178);
+} 
+
+.tablaVentasRegistros ul li .campos .estadoVenta span{
+  padding: 5px 10px;
+  border-radius: 20px;
+  max-width: 115px;
+  display: inline-block;
+}
+
+.tablaVentasRegistros ul li .campos .entregada{
+  background:rgba(24, 211, 24, 0.308);
+  color: green;
+}
+
+.tablaVentasRegistros ul li .campos .enproceso{
+  background:rgba(240, 236, 37, 0.555);
+  color:orange;
+}
+
+.tablaVentasRegistros ul li .campos .cancelada{
+  background:rgba(207, 76, 76, 0.356);
+  color:red;
 }
