@@ -11,34 +11,55 @@
     <header>
         <ul class="Header">
             <span>DevLambda</span>
-            <li>Gestión de ventas</li>
-            <li>Gestión de productos</li>
-            <li>Gestión de usuarios</li>
+            <li class="Modulos">Gestión de ventas</li>
+            <li class="Modulos">Gestión de productos</li>
+            <li class="Modulos">Gestión de usuarios</li>
             <button type="submit" class="botonSalir">Salir</button>
         </ul>
     </header>
     
     <main>
-        <h1 class="title">Estado de venta</h1>
-        <span id="textocorto">Busca el ID de venta al cual desear asginar un nuevo estado.</span>
+        <h1>Tabla de Ventas Realizadas</h1>
+        <span id="textocorto">Consulta el histórico de ventas, actualiza el estado de estas y/o edita la información que requieras. Lo único que no podrás editar es el ID de venta.</span>
         <br>
         <section>
-            <form action="">
-                <label for="idventa">
-                    <h6>Consultar ID Venta</h6>
-                    <input  type="text" name="idventa">
-        </section>
+            <!-- <ul class="buscar"> -->
 
-        <div class="">
-            <ul class="estadoVentali">
-                <li>Producción</li>
-                <li>Embalaje</li>
-                <li>Despacho</li>    
-                <li>Recepción</li>
+                    <li class="nombreFiltros">ID Venta</li>
+                    <div class="buscar">
+                        <li>
+                            <input  type="text" name="idventa"/>
+                            <i class="bi bi-search"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </li>
+                    </div>
+
+                    <li class="nombreFiltros">ID Cliente</li>
+                    <div class="search">
+                        <li>
+                            <input  type="text" name="idventa"/>
+                            <i class="bi bi-search"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </li>
+                    </div>
+
+                    <li class="nombreFiltros">Nombre Cliente</li>
+                    <div class="search">
+                        <li>                   
+                            <input  type="text" name="idventa"/>
+                            <i class="bi bi-search"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </li>
+                    </div>
             </ul>
-        </div>
-
-        <section>
+        </section>
+        <!-- <section>
             <h5>Información de venta</h5>
                     <span class="">Producto</span>
                     <span class="">Cantidad</span>
@@ -50,9 +71,8 @@
                     <span class="">Nombre Vendendor</span>
                     <span class="">Documento vendedor</span>          
             
-        </section>
+        </section> -->
     </main>
-
     <footer></footer>
 </body>
 </html>
