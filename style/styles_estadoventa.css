@@ -12,8 +12,8 @@ ul{
 
 input{
   border:0px white;
-  border-radius: 10px;
   outline: none;
+  width: auto;
 }
 
 li{
@@ -79,6 +79,8 @@ h1{
   color: #401081;
   cursor: auto;
   padding: 5px;
+  margin-right: 7px;
+  margin-left: 4px;
 }
 
 #textocorto{
@@ -95,7 +97,7 @@ h1{
  .buscar{
   width: 200px;
   border: 1px solid #969696;
-  border-radius: 10px;
+  border-radius: 7px;
   outline: none;
   padding: 5px;
 } 
@@ -105,4 +107,12 @@ h1{
   align-content: center;
   margin-left: 5%;
   margin-top: 3%;
+}
+
+svg:hover{
+  cursor: pointer;
+}
+
+.buscar:focus-within{
+  border:1px solid #F99225;
 }
