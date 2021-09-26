@@ -174,7 +174,7 @@ svg:hover{
 }
 
 .tablaVentasRegistros ul li .campos .entregada{
-  background:rgba(24, 211, 24, 0.308);
+  background:rgba(24, 211, 24, 0.171);
   color: green;
 }
 
@@ -184,6 +184,6 @@ svg:hover{
 }
 
 .tablaVentasRegistros ul li .campos .cancelada{
-  background:rgba(207, 76, 76, 0.356);
+  background:rgba(207, 76, 76, 0.13);
   color:red;
 }
