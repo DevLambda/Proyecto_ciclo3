@@ -129,7 +129,7 @@ svg:hover{
 
 }
 
-.tablaVentas ul li .campos .idVenta, .idCliente, idVendedor{
+.tablaVentas ul li .campos .idVenta, .idCliente, idVendedor, .editar{
   width: 7%;
   padding: 0 5px;
 }
@@ -186,4 +186,11 @@ svg:hover{
 .tablaVentasRegistros ul li .campos .cancelada{
   background:rgba(207, 76, 76, 0.13);
   color:red;
+}
+
+.botonEditar{
+  width: 30px;
+  padding: 5px;
+  background-color: red;
+  margin-left: 70%;
 }
