@@ -194,3 +194,18 @@ svg:hover{
   background-color: red;
   margin-left: 70%;
 }
+
+
+.infoVenta{
+  margin-left: 5%;
+  margin-top: 2%;
+  display: flex;
+}
+
+.infoVenta_campos{
+  padding: 5px;
+}
+
+.infoCliente_campos{
+  padding: 5px;
+}
