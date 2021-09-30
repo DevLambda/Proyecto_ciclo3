@@ -202,10 +202,16 @@ svg:hover{
   display: flex;
 }
 
+.infoCliente{
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
 .infoVenta_campos{
   padding: 5px;
 }
 
-.infoCliente_campos{
+.idCliente_campos{
   padding: 5px;
 }
+
