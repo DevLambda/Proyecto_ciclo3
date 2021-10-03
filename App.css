@@ -1,0 +1,76 @@
+.divheader{
+  background-color: #491391;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+  font-family:Be Vietnam Pro;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+
+.h1logo{
+  margin-left: 4rem;
+  margin-bottom: 3%;
+}
+
+.h4logo{
+  font-weight: normal;
+  margin-bottom: 0px;
+}
+
+#botonSalir{
+  border-radius: 1rem;
+  height: 30px;
+  width:  70px;
+  align-self: center;
+  background-color: #491391;
+  border: 1px solid white;
+  color: white;
+  margin-right: 1rem;
+  cursor: pointer;        
+}
+
+.divsection{
+  display: grid;
+  color:#491391;
+  align-items: start;
+  justify-items: center;
+}
+
+
+
+.botonUsuario{
+  background-color: #F99225;
+  color: white;
+  border: 0px;
+  border-radius: 6px;
+  height:25px;
+  width: 250px;
+  cursor: pointer;    
+}
+
+#div1{
+  display: flex;
+  align-self: flex-end;
+  margin-top: 7em;
+}
+
+#div2{display: flex;
+  align-self: flex-start;
+  font-family:Be Vietnam Pro;
+
+}
+
+.div3{
+  margin-top: 1em;
+  }
+
+.divfooter{
+  color: #491391;
+  font-size: 12px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-top: min(15em);
+  
+  }
