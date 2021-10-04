@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap');
+
+body {
+    margin: 0px;
+}
+
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar {
+    opacity: 1;
+    background-color: #401081;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    color: white;
+    align-content: center;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.logo {
+    font-size: 40px;
+    font-weight: 700;
+    opacity: 1;
+    margin-left: 10px;   
+}
+
+.botonNavbar {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+} 
+
+.botonNavbar:hover {
+    text-decoration-line: underline;
+}
+
+.botonSalir {  
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 10px;
+    opacity: 1;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px;
+    background-color: #401081;
+    height: 38px; 
+    width: 80px;
+    cursor: pointer;
+    align-content: center;
+    margin-top:7px;
+    margin-right: 10px;
+}
+
+.botonSalir:hover {
+    color: #401081;
+    background-color: #ffffff;
+}
+
+.entradaTextos {
+    margin-top: 2.2em;
+    display: grid;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color:#491391;
+    margin-left: 4.4em;
+    align-self: flex-start;
+}
+
+.titulo {
+    font-size: 33px;
+    font-weight: 800;
+}
+
+.descripcion {
+    margin-top: 0.2em;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.toolsProducts {    
+    margin-top: 3em;
+    margin-left: 4.6em;
+    display: inline-flex;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+
+.container {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    border-radius: 5px;
+    padding: 20px;
+    margin-left: 3.4em;
+    margin-right: 8em;
+  }
+
+.label {
+    font-size: 14px;
+    font-weight: 400;
+    color:#4D4D4D;
+    padding-bottom: 0.6em; 
+}
+
+input[type=text], select, textarea {
+    font-size: 14px;
+    width: 94%; 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    margin-top: 8px; 
+    margin-bottom: 16px; 
+    resize: vertical 
+  }
+  
+  input[type=submit] {
+    background-color: #1BC628;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    height: 42px;
+    width: 250px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #00ac00;
+  }
+
+.footer {
+    color: #491391;
+    font-size: 12px;
+    font-family:'Be Vietnam Pro', sans-serif;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    opacity: 1;
+    background-color: #ffffff;
+    padding: 24px;
+}
