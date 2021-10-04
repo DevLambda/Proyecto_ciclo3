@@ -5,32 +5,32 @@ function App() {
     <div className="App">
          <header>
         <ul class="navbar">
-            <span class="logo">DevLambda</span>
-            <li class="botonNavbar">Gestionar ventas</li>
-            <li class="botonNavbar">Gestionar productos</li>
-            <li class="botonNavbar">Gestionar usuarios</li>
+            <span className="logo">DevLambda</span>
+            <li className="botonNavbar">Gestionar ventas</li>
+            <li className="botonNavbar">Gestionar productos</li>
+            <li className="botonNavbar">Gestionar usuarios</li>
             <button type="submit" class="botonSalir">Salir</button>
         </ul>
     </header>
     <main>
         <section>
-            <div class="entradaTextos">
-                <div class="titulo">Gestionar productos</div>
-                <div class="descripcion">Aquí encuentras los productos, los actualizas o agregas nuevos.</div>
+            <div className="entradaTextos">
+                <div className="titulo">Gestionar productos</div>
+                <div className="descripcion">Aquí encuentras los productos, los actualizas o agregas nuevos.</div>
             </div>
         </section>
         <section>    
-            <ul class="toolsProducts">
+            <ul className="toolsProducts">
                 <li>
-                    <div class="label">Ingresa el ID del producto:</div>
+                    <div className="label">Ingresa el ID del producto:</div>
                     <div>
-                        <input class="buscar" placeholder=""/>
-                        <button class="botonBuscar" type="submit">Buscar Producto</button>
+                        <input className="buscar" placeholder=""/>
+                        <button className="botonBuscar" type="submit">Buscar Producto</button>
                     </div>
                 </li>
-                <button class="botonAgregar1">Agregar nuevo Producto</button>
+                <button className="botonAgregar1">Agregar nuevo Producto</button>
             </ul>
-            <div class="productsTable">
+            <div className="productsTable">
                 <table summary="Productos registrados">
                     <caption></caption>
                         <thead>
@@ -47,17 +47,17 @@ function App() {
                             <td>1</td>
                             <td>Zapatos</td>
                             <td>$120.000</td>
-                            <td><label class="badgeAvailable">Disponible</label></td>
-                            <td><button class="editButton"><span class="material-icons md-18">edit</span>
+                            <td><label className="badgeAvailable">Disponible</label></td>
+                            <td><button className="editButton"><span classname="material-icons md-18">edit</span>
                             </button></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Maletín</td>
                             <td>$90.000</td>
-                            <td><label class="badgeNotAvailable">No disponible</label></td>
+                            <td><label className="badgeNotAvailable">No disponible</label></td>
                             <td>
-                                <button class="editButton"><span class="material-icons">edit</span></button>
+                                <button className="editButton"><span className="material-icons">edit</span></button>
                             </td>
                         </tr>
                     </tbody>
@@ -68,7 +68,7 @@ function App() {
         </section>
     </main>
     <footer>    
-        <div class="footer">Equípo DevLambda / Grupo 8 / Ciclo 3 / UdeA / MisionTic 2022</div>   
+        <div className="footer">Equípo DevLambda / Grupo 8 / Ciclo 3 / UdeA / MisionTic 2022</div>   
     </footer>  
     </div>
   );
