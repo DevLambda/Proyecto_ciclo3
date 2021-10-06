@@ -1,0 +1,81 @@
+/*--------------------HEADER------------*/
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap');
+
+body {
+    margin: 0px;
+}
+
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar {
+    opacity: 1;
+    background-color: #401081;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    color: white;
+    align-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+#logo {
+    font-size: 40px;
+    font-weight: 700;
+    opacity: 1;
+    margin-left: 10px;   
+}
+
+.botonNavbar {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+} 
+
+.botonNavbar:hover {
+    text-decoration-line: underline;
+}
+
+.botonSalir {  
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 10px;
+    opacity: 1;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px;
+    background-color: #401081;
+    height: 38px; 
+    width: 80px;
+    cursor: pointer;
+    align-content: center;
+    margin-top:7px;
+    margin-right: 10px;
+}
+
+.botonSalir:hover {
+    color: #401081;
+    background-color: #ffffff;
+}
+
+
+/*------------FOOTER--------------*/
+.footer {
+  color: #491391;
+  font-size: 12px;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  opacity: 1;
+  background-color: #ffffff;
+  padding: 24px;
+}
+
+
+*{
+  font-family: 'Be Vietnam Pro', sans-serif; 
+}
