@@ -50,11 +50,11 @@ recordRoutes.route('/productos/create').post(function (req, res) {
 // This section will help you update a record by id.
 recordRoutes.route('/productos/update').patch(function (req, res) {
   const dbConnect = dbo.getDb();
-  const productos = { _id: new ObjectID(req.body.id) };
-  delete req.body.id;
+  const productos = { _id: new ObjectID(req.body._id) };
+  delete req.body._id;
   const updates = { $set: req.body };
   dbConnect
-    .collection('vehiculos')
+    .collection('productos')
     .findOneAndUpdate(
       productos,
       updates,
