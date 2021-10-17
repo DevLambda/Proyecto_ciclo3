@@ -14,7 +14,7 @@ module.exports = {
         return callback(err);
       }
 
-      dbConnection = db.db('concesionario');
+      dbConnection = db.db('ProyectoDevlambda');
       console.log('Successfully connected to MongoDB.');
 
       return callback();
