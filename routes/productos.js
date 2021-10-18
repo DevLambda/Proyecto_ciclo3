@@ -51,14 +51,16 @@ recordRoutes.route('/productos/create').post(function (req, res) {
 recordRoutes.route('/productos/update').patch(function (req, res) {
   const dbConnect = dbo.getDb();
   const productos = { _id: new ObjectID(req.body._id) };
+  console.log(productos);
   delete req.body._id;
+  console.log(req.body);
   const updates = { $set: req.body };
   dbConnect
     .collection('productos')
     .findOneAndUpdate(
       productos,
       updates,
-      { new: true, upsert: true, returnOriginal: false },
+      {upsert: true, returnOriginal: false },
       function (err, _result) {
         if (err) {
           res.status(400).send(`Error updating likes on listing with id ${productos.id}!`);
