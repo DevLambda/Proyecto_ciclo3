@@ -60,7 +60,7 @@ recordRoutes.route('/productos/update').patch(function (req, res) {
     .findOneAndUpdate(
       productos,
       updates,
-      {upsert: true, returnOriginal: false },
+      {new: true, upsert: true, returnOriginal: false },
       function (err, _result) {
         if (err) {
           res.status(400).send(`Error updating likes on listing with id ${productos.id}!`);

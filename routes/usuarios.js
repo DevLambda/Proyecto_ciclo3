@@ -52,13 +52,15 @@ recordRoutes.route('/usuarios/create').post(function (req, res) {
 // This section will help you update a record by id.
 recordRoutes.route('/usuarios/update').patch(function (req, res) {
   const dbConnect = dbo.getDb();
-  const usuarios = { _id: new ObjectID(req.body._id) };
+  const _idusuario = { _id: new ObjectID(req.body._id) };
+  console.log(_idusuario)
   delete req.body._id;
+  console.log(req.body)
   const updates = { $set: req.body };
   dbConnect
     .collection('usuarios')
     .findOneAndUpdate(
-      usuarios,
+      _idusuario,
       updates,
       { new: true, upsert: true, returnOriginal: false },
       function (err, _result) {
