@@ -53,9 +53,7 @@ recordRoutes.route('/usuarios/create').post(function (req, res) {
 recordRoutes.route('/usuarios/update').patch(function (req, res) {
   const dbConnect = dbo.getDb();
   const _idusuario = { _id: new ObjectID(req.body._id) };
-  console.log(_idusuario)
   delete req.body._id;
-  console.log(req.body)
   const updates = { $set: req.body };
   dbConnect
     .collection('usuarios')

@@ -51,9 +51,7 @@ recordRoutes.route('/productos/create').post(function (req, res) {
 recordRoutes.route('/productos/update').patch(function (req, res) {
   const dbConnect = dbo.getDb();
   const productos = { _id: new ObjectID(req.body._id) };
-  console.log(productos);
   delete req.body._id;
-  console.log(req.body);
   const updates = { $set: req.body };
   dbConnect
     .collection('productos')
@@ -76,9 +74,7 @@ recordRoutes.route('/productos/update').patch(function (req, res) {
 recordRoutes.route('/productos/delete').delete((req, res) => {
   // Delete documents
   const dbConnect = dbo.getDb();
-  console.log(req.body.id);
   const productosQuery = { _id: new ObjectID(req.body.id) };
-
   dbConnect.collection('productos').deleteOne(productosQuery, function (err, _result) {
     if (err) {
       res.status(400).send(`Error deleting listing with id ${productosQuery._id}!`);
