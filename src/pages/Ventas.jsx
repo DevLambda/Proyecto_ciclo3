@@ -326,17 +326,17 @@ const RegistrarVentas = () => {
         })
         .filter((v) => v);
         
-            const datosVenta = {
-                ced_cliente: nuevaVenta.ced_cliente,
-                nombre_cliente: nuevaVenta.nombre_cliente,
-                tel_cliente: nuevaVenta.tel_cliente,
-                dir_cliente: nuevaVenta.dir_cliente,
-                nom_vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],
-                fecha_venta: nuevaVenta.fecha_venta,
-                quantity: nuevaVenta.quantity,
-                fecha_pago: nuevaVenta.fecha_pago,
-                productos: listaProductos,
-            };
+            // const datosVenta = {
+            //     ced_cliente: nuevaVenta.ced_cliente,
+            //     nombre_cliente: nuevaVenta.nombre_cliente,
+            //     tel_cliente: nuevaVenta.tel_cliente,
+            //     dir_cliente: nuevaVenta.dir_cliente,
+            //     vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],
+            //     fecha_venta: nuevaVenta.fecha_venta,
+            //     quantity: nuevaVenta.quantity,
+            //     fecha_pago: nuevaVenta.fecha_pago,
+            //     productos: listaProductos,
+            // };
 
             // await crearVenta(
             //     datosVenta,
@@ -378,25 +378,25 @@ const RegistrarVentas = () => {
                     <h4>Datos de la Venta</h4>
 
                     <label id="label">Fecha de facturación</label>
-                    <input id="input_fecha" type="date" name="fecha_venta" required />
+                    <input id=" input_fecha" type="date" name="fecha" required />
 
                     <label id="label">Fecha de Pago</label>
                     <input id="input_fecha" type="date" name="fecha_pago" required />
 
-                    <label id="label">Vendedor
+                    <label id="label">Vendedor</label>
                         <select id="listaProductos" name="nom_vendedor" required defaultValue="">
                             <option disabled value="">Seleccione un vendedor</option>
                             {vendedores.map((el)=>{
-                                    return (<option> key={nanoid()} value={el._id}>{`${el.email}`}</option>)
+                                    return (<option key={nanoid()} value={el._id}>{`${el.email}`}</option>)
                                 })}
                         </select>
-                    </label>
-                    <br />
-                    <TablaProductos 
-                    productos={productos}
-                    setProductos={setProductos}
-                    setProductosTabla={setProductosTabla}
-                    />
+                    
+                        <TablaProductos 
+                        productos={productos}
+                        setProductos={setProductos}
+                        setProductosTabla={setProductosTabla}
+                        />
+                        
                 <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>
             </form>
         </section>
@@ -448,7 +448,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                         Seleccione un producto
                     </option>
                     {productos.map((el)=> {
-                            return <option> key={nanoid()} value={el._id}>${el.name}</option>;
+                            return <option key={nanoid()} value={el._id}>{el.descripcion}</option>;
                         })}
                 </select>
             </label>
