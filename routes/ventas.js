@@ -37,6 +37,7 @@ recordRoutes.route('/ventas/create').post(function (req, res) {
     fecha_venta: req.body.fecha_venta,
     fecha_pago: req.body.fecha_pago,
     quantity: req.body.quantity,
+    estado_venta: req.body.estado_venta
   };
 
   dbConnect.collection('ventas').insertOne(ventas, function (err, result) {
