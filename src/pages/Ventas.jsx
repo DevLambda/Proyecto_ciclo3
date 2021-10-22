@@ -326,27 +326,26 @@ const RegistrarVentas = () => {
         })
         .filter((v) => v);
         
-            // const datosVenta = {
-            //     ced_cliente: nuevaVenta.ced_cliente,
-            //     nombre_cliente: nuevaVenta.nombre_cliente,
-            //     tel_cliente: nuevaVenta.tel_cliente,
-            //     dir_cliente: nuevaVenta.dir_cliente,
-            //     vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],
-            //     fecha_venta: nuevaVenta.fecha_venta,
-            //     quantity: nuevaVenta.quantity,
-            //     fecha_pago: nuevaVenta.fecha_pago,
-            //     productos: listaProductos,
-            // };
+            const datosVenta = {
+                ced_cliente: nuevaVenta.ced_cliente,
+                nombre_cliente: nuevaVenta.nombre_cliente,
+                tel_cliente: nuevaVenta.tel_cliente,
+                vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],
+                fecha_venta: nuevaVenta.fecha_venta,
+                fecha_pago: nuevaVenta.fecha_pago,
+                productos: listaProductos,
+                quantity: nuevaVenta.quantity,         
+            };
 
-            // await crearVenta(
-            //     datosVenta,
-            //     (response) => {
-            //     console.log(response);
-            //     },
-            //     (error) => {
-            //     console.error(error);
-            //     }
-            // );
+            await registrarVentas(
+                datosVenta,
+                (response) => {
+                console.log(response);
+                },
+                (error) => {
+                console.error(error);
+                }
+            );
     };
     
     return (
@@ -362,34 +361,31 @@ const RegistrarVentas = () => {
                 
                 <form ref={form} onSubmit={submitForm} name="form_ventas" id="form_ventas">
                     <h4>Datos del Cliente</h4>
-                    <label id="label">Cédula</label>
-                    <input id="input_ventas" type="text" name="ced_cliente" required />
 
-                    <label id="label">Nombre Completo</label>
-                    <input id="input_ventas" type="text" name="nombre_cliente" required />
+                    <label id="label">Cédula
+                    <input id="input_ventas" type="text" name="ced_cliente" required /></label>
 
-                    <label id="label">Teléfono</label>
-                    <input id="input_ventas" type="text" name="tel_cliente" required />
+                    <label id="label">Nombre Completo
+                    <input id="input_ventas" type="text" name="nombre_cliente" required /></label>
 
-                    <label id="label">Dirección</label>
-                    <input id="input_ventas" type="text" name="dir_cliente" required />
-                    <br />
+                    <label id="label">Teléfono
+                    <input id="input_ventas" type="text" name="tel_cliente" required /></label>
 
                     <h4>Datos de la Venta</h4>
 
-                    <label id="label">Fecha de facturación</label>
-                    <input id=" input_fecha" type="date" name="fecha" required />
+                    <label id="label">Fecha de facturación
+                    <input id=" input_fecha" type="date" name="fecha_venta" required /></label>
 
-                    <label id="label">Fecha de Pago</label>
-                    <input id="input_fecha" type="date" name="fecha_pago" required />
+                    <label id="label">Fecha de Pago
+                    <input id="input_fecha" type="date" name="fecha_pago" required /></label>
 
-                    <label id="label">Vendedor</label>
-                        <select id="listaProductos" name="nom_vendedor" required defaultValue="">
+                    <label id="label">Vendedor
+                        <select id="listaProductos1" name="vendedor" required defaultValue="">
                             <option disabled value="">Seleccione un vendedor</option>
                             {vendedores.map((el)=>{
                                     return (<option key={nanoid()} value={el._id}>{`${el.email}`}</option>)
                                 })}
-                        </select>
+                        </select></label>
                     
                         <TablaProductos 
                         productos={productos}
@@ -398,6 +394,7 @@ const RegistrarVentas = () => {
                         />
                         
                 <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>
+
             </form>
         </section>
     <Footer />
@@ -406,6 +403,7 @@ const RegistrarVentas = () => {
 };
 
 const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
+
     const [productoAAgregar, setProductoAAgregar] = useState([]);
     const [filasTabla, setFilasTabla] = useState([]);   
 
@@ -427,7 +425,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
     const modificarProducto = (producto, quantity) => {
         setFilasTabla(
           filasTabla.map((ft) => {
-            if (ft._id === producto.id) {
+            if (ft._id === producto._id) {
               ft.quantity = quantity;
               ft.total = producto.valor * quantity;
             }
@@ -440,15 +438,21 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
         <div>
             <label id="label">
                 Producto
-            <select 
-                id="listaProductos" 
-                required value={productoAAgregar._id ?? ""} 
-                onChange={(e) => setProductoAAgregar(productos.filter((v) => v._id === e.target.value[0]))}>
+                <select id="listaProductos1" 
+                    value={productoAAgregar._id ?? ""} 
+                    onChange={(e) => 
+                    setProductoAAgregar(productos.filter((v) => v._id === e.target.value)[0])
+                    }
+                >
                     <option disabled value=""> 
                         Seleccione un producto
                     </option>
                     {productos.map((el)=> {
-                            return <option key={nanoid()} value={el._id}>{el.descripcion}</option>;
+                        return (
+                        <option 
+                            key={nanoid()} 
+                            value={el._id}>
+                        {el.descripcion}</option>);
                         })}
                 </select>
             </label>
@@ -456,7 +460,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
             <button 
                 type="button" 
                 className="btn_new"  
-                onclick={()=> agregarProducto()}>
+                onClick={()=> agregarProducto()}>
                 Agregar producto
             </button>
                 
@@ -464,10 +468,10 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                     <thead>
                         <tr>
                             <th id="t_ventas">Código</th>
-                            <th id="t_ventas" colspan="2">Producto</th>
+                            <th id="t_ventas">Producto</th>
                             <th id="t_ventas">Cantidad</th>
-                            <th id="t_ventas" className="textright">Valor Unitario</th>
-                            <th id="t_ventas" className="textright">Total</th>
+                            <th id="t_ventas">Valor Unitario</th>
+                            <th id="t_ventas">Total</th>
                             <th id="t_ventas">Eliminar</th>
                             <th className='hidden'>Input</th>
                         </tr>
@@ -499,6 +503,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
     );
 };
 
+
 const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
     
     const [producto, setProducto] = useState(pro);
@@ -510,12 +515,12 @@ const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
     return (
       <tr>
         <td>{producto._id}</td>
-        <td>{producto.nombre}</td>
-        <td>{producto.precio}</td>
+        <td>{producto.descripcion}</td>
         <td>
           <label htmlFor={`valor_${index}`}>
             <input
               type='number'
+              id="input_cantidad"
               name={`quantity_${index}`}
               value={producto.quantity}
               onChange={(e) => {
@@ -536,7 +541,7 @@ const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
         <td>
           <i
             onClick={() => eliminarProducto(producto)}
-            className='fas fa-minus text-red-500 cursor-pointer'
+            className='far fa-trash-alt cursor-pointer'
           />
         </td>
         <td className='hidden'>

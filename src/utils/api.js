@@ -28,27 +28,27 @@ export const editarProducto = async ( data, successCallback, errorCallback) => {
 };
 
 
-/*---------VENTAS-------------*/
+/*--------------------------VENTAS---------------------------------------*/
 
 export const obtenerVentas = async (successCallback, errorCallback) => {
-  const options = { method: 'GET', url: 'http://localhost:5000/Ventas/' };
+  const options = { method: 'GET', url: 'http://localhost:3001/ventas/' };
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
 export const registrarVentas = async (data, successCallback, errorCallback) => {
   const options = {
     method: 'POST',
-    url: 'http://localhost:5000/Ventas/',
+    url: 'http://localhost:3001/ventas/create',
     headers: { 'Content-Type': 'application/json' },
     data,
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-export const editarVentas = async (id, data, successCallback, errorCallback) => {
+export const editarVentas = async (data, successCallback, errorCallback) => {
   const options = {
     method: 'PATCH',
-    url: `http://localhost:5000/Ventas/${id}/`,
+    url: `http://localhost:3001/ventas/update/`,
     headers: { 'Content-Type': 'application/json' },
     data,
   };
