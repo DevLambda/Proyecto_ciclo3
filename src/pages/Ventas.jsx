@@ -136,30 +136,30 @@ const TablaVentas = ({ listaVentas, setEjecutarConsulta }) => {
 
 /*------------Editar ventas de la tabla -------------------------->*/
 
-const FilaVentas = ({ Ventas, setEjecutarConsulta }) => {
+const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
     const [edit, setEdit] = useState(false);
     const [infoNuevaVenta, setInfoNuevaVenta] = useState(
         {
-            idVenta: Ventas._id,
+            _id: Ventas._id,
             fecha_venta: Ventas.fecha_venta,
             fecha_pago: Ventas.fecha_pago,
             estado_venta: Ventas.estado_venta,
             nombre_cliente: Ventas.nombre_cliente,
-            nombre_vendedor: Ventas.nombre_vendedor,
+            vendedor:Ventas.estado_venta,
             total: Ventas.total,
         }
     );
 
     const actualizarVenta = async () => {
         await editarVentas(
-            Ventas._id,
+            
             {
-                idVenta: infoNuevaVenta.idVenta,
+                _id:Ventas._id,
                 fecha_venta: infoNuevaVenta.fecha_venta,
                 fecha_pago: infoNuevaVenta.fecha_pago,
                 estado_venta: infoNuevaVenta.estado_venta,
                 nombre_cliente: infoNuevaVenta.nombre_cliente,
-                nombre_vendedor: infoNuevaVenta.nombre_vendedor,
+                vendedor:Ventas.estado_venta,
                 total: infoNuevaVenta.total,
             },
             (response) => {
@@ -179,7 +179,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta }) => {
         <tr>
             {edit ? (
                 <>
-                    <td>{Ventas.idVenta}</td>
+                    <td>{Ventas._id}</td>
                     <td>{Ventas.fecha_venta}</td>
                     <td>{Ventas.fecha_pago}</td>
                     <td><input className="estiloCampos" type="date" /></td>
@@ -195,7 +195,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta }) => {
                         </select>
                     </td>
                     <td>{Ventas.nombre_cliente}</td>
-                    <td>{Ventas.nombre_vendedor}</td>
+                    <td>{Ventas.estado_venta}</td>
                     <td>{Ventas.total}</td>
                     <td>
                         <button className="checkButton" onClick={actualizarVenta()}>
@@ -209,13 +209,13 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta }) => {
                 </>
             ) : (
                 <>
-                    <td>{Ventas.idVenta}</td>
+                    <td>{Ventas._id}</td>
                     <td>{Ventas.fecha_venta}</td>
                     <td>{Ventas.fecha_pago}</td>
                     <td><label className={Ventas.estado_venta === 'Entregada' ? 'badgeAvailable' : Ventas.estado_venta === 'En Progreso' ? "badgeInProgress" : 'badgeNotAvailable'}>
                         {Ventas.estado_venta}</label></td>
                     <td>{Ventas.nombre_cliente}</td>
-                    <td>{Ventas.nombre_vendedor}</td>
+                    <td>{Ventas.estado_venta}</td>
                     <td>{Ventas.total}</td>
                     <td><button className="editButton" onClick={() => setEdit(!edit)}>
                         <span className="material-icons">edit</span>
@@ -284,16 +284,20 @@ const RegistrarVentas = () => {
         .filter((v) => v);
         
             const datosVenta = {
+
                 ced_cliente: nuevaVenta.ced_cliente,
                 nombre_cliente: nuevaVenta.nombre_cliente,
                 tel_cliente: nuevaVenta.tel_cliente,
-                vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],
                 fecha_venta: nuevaVenta.fecha_venta,
                 fecha_pago: nuevaVenta.fecha_pago,
                 productos: listaProductos,
-                quantity: nuevaVenta.quantity,         
+                quantity: nuevaVenta.quantity,
+                total_venta: nuevaVenta.total_venta, 
+                estado_venta:nuevaVenta.estado_venta,   
+                vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],  
             };
 
+            //falta poner el TOAST
             await registrarVentas(
                 datosVenta,
                 (response) => {
@@ -340,7 +344,7 @@ const RegistrarVentas = () => {
                         <select id="listaProductos1" name="vendedor" required defaultValue="">
                             <option disabled value="">Seleccione un vendedor</option>
                             {vendedores.map((el)=>{
-                                    return (<option key={nanoid()} value={el._id}>{`${el.email}`}</option>)
+                                    return (<option key={nanoid()} value={el._id}>{`${el.given_name} ${el.family_name}`}</option>)
                                 })}
                         </select></label>
                     
@@ -349,9 +353,7 @@ const RegistrarVentas = () => {
                         setProductos={setProductos}
                         setProductosTabla={setProductosTabla}
                         />
-                        
                 <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>
-
             </form>
         </section>
     <Footer />
@@ -362,13 +364,19 @@ const RegistrarVentas = () => {
 const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
 
     const [productoAAgregar, setProductoAAgregar] = useState([]);
-    const [filasTabla, setFilasTabla] = useState([]);   
-
+    const [filasTabla, setFilasTabla] = useState([]);  
+    const [totalVenta, setTotalVenta] = useState(0);
+    
     useEffect(() => {
+        let total=0;
+        filasTabla.forEach( (f)=>{
+            total =total+f.total;
+        });
+        setTotalVenta(total);
         setProductosTabla(filasTabla);
-      }, [filasTabla, setProductosTabla]);
-      
-      const agregarProducto = () => {
+    }, [filasTabla, setProductosTabla]);
+
+    const agregarProducto = () => {
         setFilasTabla([...filasTabla, productoAAgregar]);
         setProductos(productos.filter((v) => v._id !== productoAAgregar._id));
         setProductoAAgregar({});
@@ -391,11 +399,12 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
         );
       };
 
+
     return (
         <div>
             <label id="label">
                 Producto
-                <select id="listaProductos1" 
+                <select id="listaProductos1"
                     value={productoAAgregar._id ?? ""} 
                     onChange={(e) => 
                     setProductoAAgregar(productos.filter((v) => v._id === e.target.value)[0])
@@ -413,7 +422,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                         })}
                 </select>
             </label>
-            
+            <input name="estado_venta" value="En Progreso" type="hidden"/>
             <button 
                 type="button" 
                 className="btn_new"  
@@ -427,10 +436,10 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                             <th id="t_ventas">Código</th>
                             <th id="t_ventas">Producto</th>
                             <th id="t_ventas">Cantidad</th>
-                            <th id="t_ventas">Valor Unitario</th>
+                            <th id="t_ventas">Precio Unitario</th>
                             <th id="t_ventas">Total</th>
                             <th id="t_ventas">Eliminar</th>
-                            <th className='hidden'>Input</th>
+                            <th className="hidden">Input</th>
                         </tr>
                     </thead>
 
@@ -448,14 +457,8 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                             );   
                         })}
                     </tbody>
-                    
-                    <tfoot>
-                        <tr>
-                            <td id="t_ventas" colspan="5" className="textright">Total </td>
-                            <td id="t_ventas" className="textright">{1000.00}</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                </table> 
+            <span name="total_venta" id="total">Total Venta {totalVenta}</span>              
         </div>
     );
 };
@@ -480,6 +483,7 @@ const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
               id="input_cantidad"
               name={`quantity_${index}`}
               value={producto.quantity}
+              min={0}
               onChange={(e) => {
                 modificarProducto(producto, e.target.value === '' ? '0' : e.target.value);
                 setProducto({
@@ -501,7 +505,7 @@ const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
             className='far fa-trash-alt cursor-pointer'
           />
         </td>
-        <td className='hidden'>
+        <td className="hidden">
           <input hidden defaultValue={producto._id} name={`producto_${index}`} />
         </td>
       </tr>
