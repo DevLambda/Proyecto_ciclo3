@@ -140,7 +140,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta }) => {
     const [edit, setEdit] = useState(false);
     const [infoNuevaVenta, setInfoNuevaVenta] = useState(
         {
-            idVenta: Ventas._id,
+            _id: Ventas._id,
             fecha_venta: Ventas.fecha_venta,
             fecha_pago: Ventas.fecha_pago,
             estado_venta: Ventas.estado_venta,
@@ -152,9 +152,9 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta }) => {
 
     const actualizarVenta = async () => {
         await editarVentas(
-            Ventas._id,
+            
             {
-                idVenta: infoNuevaVenta.idVenta,
+                _id: infoNuevaVenta._id,
                 fecha_venta: infoNuevaVenta.fecha_venta,
                 fecha_pago: infoNuevaVenta.fecha_pago,
                 estado_venta: infoNuevaVenta.estado_venta,
@@ -179,7 +179,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta }) => {
         <tr>
             {edit ? (
                 <>
-                    <td>{Ventas.idVenta}</td>
+                    <td>{Ventas._id}</td>
                     <td>{Ventas.fecha_venta}</td>
                     <td>{Ventas.fecha_pago}</td>
                     <td><input className="estiloCampos" type="date" /></td>
@@ -209,7 +209,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta }) => {
                 </>
             ) : (
                 <>
-                    <td>{Ventas.idVenta}</td>
+                    <td>{Ventas._id}</td>
                     <td>{Ventas.fecha_venta}</td>
                     <td>{Ventas.fecha_pago}</td>
                     <td><label className={Ventas.estado_venta === 'Entregada' ? 'badgeAvailable' : Ventas.estado_venta === 'En Progreso' ? "badgeInProgress" : 'badgeNotAvailable'}>
@@ -284,6 +284,7 @@ const RegistrarVentas = () => {
         .filter((v) => v);
         
             const datosVenta = {
+
                 ced_cliente: nuevaVenta.ced_cliente,
                 nombre_cliente: nuevaVenta.nombre_cliente,
                 tel_cliente: nuevaVenta.tel_cliente,
@@ -291,7 +292,8 @@ const RegistrarVentas = () => {
                 fecha_venta: nuevaVenta.fecha_venta,
                 fecha_pago: nuevaVenta.fecha_pago,
                 productos: listaProductos,
-                quantity: nuevaVenta.quantity,         
+                quantity: nuevaVenta.quantity,   
+                estado_venta: nuevaVenta.estado_venta      
             };
 
             await registrarVentas(
@@ -336,6 +338,7 @@ const RegistrarVentas = () => {
                     <label id="label">Fecha de Pago
                     <input id="input_fecha" type="date" name="fecha_pago" required /></label>
 
+
                     <label id="label">Vendedor
                         <select id="listaProductos1" name="vendedor" required defaultValue="">
                             <option disabled value="">Seleccione un vendedor</option>
@@ -344,6 +347,9 @@ const RegistrarVentas = () => {
                                 })}
                         </select></label>
                     
+                    {/* Es para que asigne por defecto el estado en progreso */}
+                    <input id="input_ventas" type="hidden" name="estado_venta" value = "En Progreso" required/>
+
                         <TablaProductos 
                         productos={productos}
                         setProductos={setProductos}
