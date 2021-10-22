@@ -8,54 +8,11 @@ import { obtenerProductos } from '../utils/api';
 import { obtenerUsuarios } from '../utils/api';
 import { nanoid } from 'nanoid';
 
-const GestionarVentasBackend = [
-    {
-        idVenta: "0001",
-        fecha_venta: "08/10/2021",
-        fecha_pago: "8/10/2021",
-        estado_venta: "Entregada",
-        nombre_cliente: 'Laura Rojas',
-        total: "$120.000",
-        nombre_vendedor: "Gina Rodriguez",
-    },
-    {
-        idVenta: "0002",
-        fecha_venta: "08/10/2021",
-        fecha_pago: "8/10/2021",
-        estado_venta: "Cancelada",
-        nombre_cliente: 'Laura Rojas',
-        total: "$120.000",
-        nombre_vendedor: "Gina Rodriguez",
-    },
-    {
-        idVenta: "0003",
-        fecha_venta: "08/10/2021",
-        fecha_pago: "8/10/2021",
-        estado_venta: "En Progreso",
-        nombre_cliente: 'Laura Rojas',
-        total: "$120.000",
-        nombre_vendedor: "Gina Rodriguez",
-    },
-    {
-        idVenta: "0004",
-        fecha_venta: "08/10/2021",
-        fecha_pago: "8/10/2021",
-        estado_venta: "En Progreso",
-        nombre_cliente: 'Laura Rojas',
-        total: "$120.000",
-        nombre_vendedor: "Gina Rodriguez",
-    },
-]
-
 const Ventas = () => {
     const [Ventas, setVentas] = useState([]);
     const [mostrarTablaVentas, setMostrarTablaVentas] = useState(true);
     const [textoBoton, setTextoBoton] = useState('Registrar Venta');
     const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
-
-    useEffect(() => {
-        setVentas(GestionarVentasBackend);
-    }, []);
 
     useEffect(() => {
         console.log('consulta', ejecutarConsulta);
@@ -183,7 +140,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta }) => {
     const [edit, setEdit] = useState(false);
     const [infoNuevaVenta, setInfoNuevaVenta] = useState(
         {
-            idVenta: Ventas.idVenta,
+            idVenta: Ventas._id,
             fecha_venta: Ventas.fecha_venta,
             fecha_pago: Ventas.fecha_pago,
             estado_venta: Ventas.estado_venta,
