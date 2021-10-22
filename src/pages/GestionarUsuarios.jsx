@@ -3,21 +3,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { obtenerUsuarios, registrarUsuarios, editarUsuarios} from '../utils/api';
+import { obtenerUsuarios, editarUsuarios} from '../utils/api';
 import { nanoid } from 'nanoid';
-// import axios from 'axios';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
-
-
-const GestionarUsuariosBackend = []
 
 /*--Esta función permite editar cada registro de la tabla de usuario, solo permite editar estado y rol---*/
 
 const FilaUsuarios = ({usuario})=>{
 
     const [edit, setEdit] = useState(false);
+    
     const [infoUsuario, setInfoUsuario]=useState(
         {
             id_usuario: usuario.id_usuario,

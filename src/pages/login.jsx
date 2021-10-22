@@ -49,36 +49,5 @@ function Login() {
   );
 }
 
-// /*------------ Crear Nuevos Usuarios --------------*/
-
-// const RegistrarUsuarios = () => {
-//   return(
-//       <div>
-//           <div className="contenedorFormulario">
-//           <form>
-//               <div ClassName="labelform">
-               
-//               <label for="name">Nombres</label>
-//               <input type="text" id="name" nameName="Name"/>
-
-//               <label for="lname">Apellidos</label>
-//               <input type="text" id="lname" nameName="LastName"/>
-              
-//               <label for="email">Correo</label>
-//               <input type="email" id="email" nameName="Correo"/>
-//               {/*El rol se pone al registrarse? o como se sabe que es vendedor y/o admin */}
-//               <label for="rol">Rol</label>
-//               <select id="rol" nameName="rol">
-//                   <option value="Administrador">Administrador</option>
-//                   <option value="Vendedor">Vendedor</option>
-//               </select>
-//               <input type="submit" value="Registrarme"></input>
-//               </div>
-//           </form>
-//       </div>
-//   </div>
-//   );
-// };
-
 
 export default Login;
