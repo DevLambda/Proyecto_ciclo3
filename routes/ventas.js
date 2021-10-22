@@ -34,11 +34,9 @@ recordRoutes.route('/ventas/create').post(function (req, res) {
     ced_cliente: req.body.ced_cliente,
     nombre_cliente: req.body.nombre_cliente,
     tel_cliente: req.body.tel_cliente,
-    vendedor: vendedores.filter((v) => v._id === req.body.vendedor)[0],
     fecha_venta: req.body.fecha_venta,
     fecha_pago: req.body.fecha_pago,
     quantity: req.body.quantity,
-    productos: listaProductos,
   };
 
   dbConnect.collection('ventas').insertOne(ventas, function (err, result) {

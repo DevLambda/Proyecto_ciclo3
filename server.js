@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(require('./routes/productos'));
 app.use(require('./routes/usuarios'));
+app.use(require('./routes/ventas'));
 // Global error handling
 app.use(function (err, _req, res) {
   console.error(err.stack);
