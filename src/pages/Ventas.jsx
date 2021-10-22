@@ -159,7 +159,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
                 fecha_pago: infoNuevaVenta.fecha_pago,
                 estado_venta: infoNuevaVenta.estado_venta,
                 nombre_cliente: infoNuevaVenta.nombre_cliente,
-                vendedor:Ventas.estado_venta,
+                vendedor:infoNuevaVenta.estado_venta,
                 total: infoNuevaVenta.total,
             },
             (response) => {
@@ -291,10 +291,15 @@ const RegistrarVentas = () => {
                 fecha_venta: nuevaVenta.fecha_venta,
                 fecha_pago: nuevaVenta.fecha_pago,
                 productos: listaProductos,
+<<<<<<< HEAD
                 quantity: nuevaVenta.quantity,
                 total_venta: nuevaVenta.total_venta, 
                 estado_venta:nuevaVenta.estado_venta,   
                 vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],  
+=======
+                quantity: nuevaVenta.quantity,   
+                estado_venta: nuevaVenta.estado_venta      
+>>>>>>> 93a51783b4d5f0ceb93296e9e825255aab596cdf
             };
 
             //falta poner el TOAST
@@ -340,6 +345,7 @@ const RegistrarVentas = () => {
                     <label id="label">Fecha de Pago
                     <input id="input_fecha" type="date" name="fecha_pago" required /></label>
 
+
                     <label id="label">Vendedor
                         <select id="listaProductos1" name="vendedor" required defaultValue="">
                             <option disabled value="">Seleccione un vendedor</option>
@@ -348,6 +354,9 @@ const RegistrarVentas = () => {
                                 })}
                         </select></label>
                     
+                    {/* Es para que asigne por defecto el estado en progreso */}
+                    <input id="input_ventas" type="hidden" name="estado_venta" value = "En Progreso" required/>
+
                         <TablaProductos 
                         productos={productos}
                         setProductos={setProductos}
