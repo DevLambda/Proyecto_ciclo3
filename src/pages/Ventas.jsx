@@ -291,18 +291,13 @@ const RegistrarVentas = () => {
                 fecha_venta: nuevaVenta.fecha_venta,
                 fecha_pago: nuevaVenta.fecha_pago,
                 productos: listaProductos,
-<<<<<<< HEAD
                 quantity: nuevaVenta.quantity,
                 total_venta: nuevaVenta.total_venta, 
                 estado_venta:nuevaVenta.estado_venta,   
                 vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],  
-=======
-                quantity: nuevaVenta.quantity,   
-                estado_venta: nuevaVenta.estado_venta      
->>>>>>> 93a51783b4d5f0ceb93296e9e825255aab596cdf
             };
 
-            //falta poner el TOAST
+            //falta poner el TOASTgit
             await registrarVentas(
                 datosVenta,
                 (response) => {
