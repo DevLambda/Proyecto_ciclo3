@@ -4,7 +4,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 /*------------ FORMULARIO Crear Nuevos Usuarios --------------*/
-
 const RegistrarUsuario = () => {
     const form = useRef(null);
 
@@ -17,15 +16,18 @@ const RegistrarUsuario = () => {
         fd.forEach((value, key) => {
             nuevoUsuario[key] = value;
         });
+        console.log('espia',nuevoUsuario)
         //se define el método POST
         await registrarUsuarios(
-            {
+            
+            {   
+                _id:nuevoUsuario._id,
                 id_usuario: nuevoUsuario.id_usuario,
                 given_name: nuevoUsuario.given_name,
                 family_name: nuevoUsuario.family_name,
                 email: nuevoUsuario.email,
                 rol:nuevoUsuario.rol,
-                estado:nuevoUsuario.estado,
+                estado:nuevoUsuario.estado
             },
             (response) => {
               console.log(response.data);
@@ -72,7 +74,7 @@ const RegistrarUsuario = () => {
                     </label>
                     <br/>
                     <label htmlFor="rolUsuario">Rol del Usuario
-                        <select name="estado" required defaultValue={0} >
+                        <select name="rol" required defaultValue={0} >
                             <option disabled value={0}> Selecciona un rol</option>
                             <option>Administrador</option>
                             <option>Vendedor</option>

@@ -160,8 +160,8 @@ const FilaProducto = ({ producto, setEjecutarConsulta }) => {
     //enviar la info al back
     
         await editarProducto(
-            producto._id,
             {    
+                _id: producto._id,
                 idProducto: infoNuevoProducto.idProducto,
                 descripcion: infoNuevoProducto.descripcion,
                 valor: infoNuevoProducto.valor,
@@ -259,6 +259,7 @@ const RegistrarProductos = ({ setMostrarTablaProductos, listaProductos, setProdu
     const submitForm = async (e) => {
         e.preventDefault();
         const fd = new FormData(form.current);
+        
 
         const nuevoProducto = {};
         fd.forEach((value, key) => {

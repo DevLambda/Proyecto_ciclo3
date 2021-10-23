@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/Header';
@@ -25,8 +25,8 @@ const FilaUsuarios = ({usuario})=>{
 
     const actualizarDatosUsuarios = async () =>{
         await editarUsuarios(
-            usuario._id,
             {   
+                _id:usuario._id,
                 id_usuario: infoUsuario.id_usuario,
                 given_name: infoUsuario.given_name,
                 family_name: infoUsuario.family_name,
@@ -53,6 +53,8 @@ const FilaUsuarios = ({usuario})=>{
             <td>{usuario.given_name}</td>
             <td>{usuario.family_name}</td>
             <td>{usuario.email}</td>
+            <td>{usuario.rol}</td>
+            <td>{usuario.estado}</td>
             <td>
              <select name="rol_usuario" className="listaUsuarios" required value={infoUsuario.rol} onChange={(e)=>setInfoUsuario({...infoUsuario, rol:e.target.value})} >
                 <option disabled value={0}> Selecciona un rol</option>
@@ -72,7 +74,7 @@ const FilaUsuarios = ({usuario})=>{
             <button className="checkButton" onClick={actualizarDatosUsuarios}>
                         <span className="material-icons">check</span></button></td>
             <td>
-            <button className="editButton" onClick={()=>setEdit(!edit)}> 
+            <button className="editButton" onClick={()=>setEdit(true)}> 
             <span className="material-icons">cancel</span></button></td>
                         
             </> 
@@ -99,18 +101,6 @@ const FilaUsuarios = ({usuario})=>{
 const GestionarUsuarios = () => {
 
     const [GestionarUsuarios, setGestionarUsuarios] = useState([]);
-    const form=useRef(null);
-    // const [busqueda, setBusqueda]=useState("");
-    // const [ejecutarConsulta, setEjecutarConsulta]=useState(true);
-
-    //hacer esto cuando tengamos la base lista de usuarios, desde hora y 50m min para complementar, clase 14
-    // useEffect(() =>{
-    //     if (ejecutarConsulta){
-
-    //     }
-    // }, [ejecutarConsulta]);
-    
-    //este use effect se debe actualizar cuando se tenga la conexión con el backend
     useEffect(() => {
         if (GestionarUsuarios) {
             obtenerUsuarios((response) => {
@@ -126,24 +116,6 @@ const GestionarUsuarios = () => {
 
     }, []);
 
-    // useEffect(() => {
-    //     console.log("Busqueda", busqueda);
-    //     console.log("lista Original",GestionarUsuariosBackend);
-    //     console.log("listafiltrada",
-    //     setUsuariosFiltrados(
-    //         GestionarUsuariosBackend.filter(elemento=>{
-    //         return JSON.stringify(elemento).includes(busqueda);
-    //         //para solo una varible: elemento.give_name.includes...
-    //     }))
-    //     )
-    // }, [busqueda, GestionarUsuariosBackend]);
-    // //revisar variables de este useEffect
-
-    const submitEdit =(e)=>{
-        e.preventDefault();
-        const fd = new FormData(form.current);
-        console.log(e);
-    }
         return (
             <div>
                 <Header/>

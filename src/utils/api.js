@@ -83,3 +83,4 @@ export const editarUsuarios = async ( data, successCallback, errorCallback) => {
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
+
