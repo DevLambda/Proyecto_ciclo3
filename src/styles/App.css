@@ -107,7 +107,7 @@ font-family: 'Be Vietnam Pro', sans-serif;
     background-color: #F99225;
     border: none;
     color: white;
-    margin-top: 5rem;
+    margin-top: 2rem;
     border-radius: 3px;
     height: 4em;
     width: 16em;
@@ -794,4 +794,9 @@ input[type=date] {
     color:#491391;
     margin-left: 2em;
     margin-bottom: 1em;
+}
+
+#h2{
+    margin-left: 4.5em;
+    margin-top: 2em;
 }

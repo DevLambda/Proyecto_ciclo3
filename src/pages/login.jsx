@@ -16,11 +16,11 @@ function Login() {
             <div className="divlogin">
                 <h1>Bienvenido<br></br>a tu plataforma de ventas</h1>
                  <div>  
-                  <Link to='/RegistrarUsuario'><button className="botonlogin" type="submit">Registrarme</button><br/></Link>
+                  <Link to='/RegistrarUsuario'><button className="botonlogin" type="submit">Regístrate</button><br/></Link>
+                  <h2 id="h2">- Ó -</h2>
                   </div>
-                
                  <div>
-                    <button className="botonlogin" type="submit" onClick={() => loginWithRedirect()} >Ingresar con Google</button>
+                    <button className="botonlogin" type="submit" onClick={() => loginWithRedirect()} >Ingresa con Google</button>
                   </div>
               
                 <div id="g_id_onload"
