@@ -61,7 +61,7 @@ const Ventas = () => {
                 listaVentas={Ventas}
                 setVentas={setVentas} />
             )}
-            <ToastContainer position='bottom-center' autoClose={5000} />
+            <ToastContainer position='bottom-center' autoClose={4000} />
         </div>
     )
 }
@@ -96,7 +96,6 @@ const TablaVentas = ({ listaVentas, setEjecutarConsulta }) => {
                         <div className="label">Ingresa el ID de la venta: </div>
                         <input id="busqueda" type="text" value={busqueda}
                             onChange={(e) => setBusqueda(e.target.value)} />
-                        <button className="botonBuscar" type="submit">Buscar</button>
                     </li>
                 </ul>
 
@@ -146,7 +145,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
             estado_venta: Ventas.estado_venta,
             nombre_cliente: Ventas.nombre_cliente,
             vendedor:Ventas.estado_venta,
-            total: Ventas.total,
+            total_venta: Ventas.total_venta,
         }
     );
 
@@ -154,22 +153,17 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
         await editarVentas(
             
             {
-                _id:Ventas._id,
-                fecha_venta: infoNuevaVenta.fecha_venta,
+                _id: Ventas._id,
                 fecha_pago: infoNuevaVenta.fecha_pago,
                 estado_venta: infoNuevaVenta.estado_venta,
-                nombre_cliente: infoNuevaVenta.nombre_cliente,
-                vendedor:infoNuevaVenta.estado_venta,
-                total: infoNuevaVenta.total,
             },
             (response) => {
-                console.log(response.data);
-                toast.success('Producto editado con éxito');
+                toast.success('Venta editada con éxito');
                 setEdit(false);
                 setEjecutarConsulta(true);
             },
             (error) => {
-                toast.error('Error editando el producto');
+                toast.error('Error actualizando venta');
                 console.error(error);
             }
         );
@@ -179,14 +173,18 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
         <tr>
             {edit ? (
                 <>
-                    <td>{Ventas._id}</td>
+                    <td>{Ventas._id.slice(10)}</td>
                     <td>{Ventas.fecha_venta}</td>
-                    <td>{Ventas.fecha_pago}</td>
-                    <td><input className="estiloCampos" type="date" /></td>
+                    <td>
+                        <input className="estiloCampos" name="fecha_pago"
+                        type="date" 
+                        defaultValue={infoNuevaVenta.fecha_pago}
+                        onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, fecha_pago: e.target.value })}>
+                        </input>
+                    </td>
                     <td>
                         <select name="estado_venta" className="estilosCampos"
-                            required
-                            defaultValue={setInfoNuevaVenta.estado_venta}
+                            defaultValue={infoNuevaVenta.estado_venta}
                             onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, estado_venta: e.target.value })}>
                             <option disabled value={0}>Selecciona un estado</option>
                             <option>Entregada</option>
@@ -195,10 +193,10 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
                         </select>
                     </td>
                     <td>{Ventas.nombre_cliente}</td>
-                    <td>{Ventas.estado_venta}</td>
-                    <td>{Ventas.total}</td>
+                    <td>{Ventas.estado_venta}</td>{/*aquí hay que poner para que traiga el nombre de vendedor*/}
+                    <td>{Ventas.total_venta}</td>
                     <td>
-                        <button className="checkButton" onClick={actualizarVenta()}>
+                        <button className="checkButton" onClick={actualizarVenta}>
                             <span className="material-icons">check</span></button>
                     </td>
                     <td>
@@ -209,15 +207,15 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
                 </>
             ) : (
                 <>
-                    <td>{Ventas._id}</td>
+                    <td>{Ventas._id.slice(10)}</td>
                     <td>{Ventas.fecha_venta}</td>
                     <td>{Ventas.fecha_pago}</td>
                     <td><label className={Ventas.estado_venta === 'Entregada' ? 'badgeAvailable' : Ventas.estado_venta === 'En Progreso' ? "badgeInProgress" : 'badgeNotAvailable'}>
                         {Ventas.estado_venta}</label></td>
                     <td>{Ventas.nombre_cliente}</td>
-                    <td>{Ventas.estado_venta}</td>
-                    <td>{Ventas.total}</td>
-                    <td><button className="editButton" onClick={() => setEdit(!edit)}>
+                    <td>{Ventas.estado_venta}</td>{/*aquí va nombre vendedor*/}
+                    <td>{Ventas.total_venta}</td>
+                    <td><button className="editButton" onClick={() => setEdit(true)}>
                         <span className="material-icons">edit</span>
                     </button>
                     </td>
@@ -466,7 +464,6 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
         </div>
     );
 };
-
 
 const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
     

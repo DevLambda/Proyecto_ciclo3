@@ -25,7 +25,8 @@ const FilaUsuarios = ({usuario})=>{
 
     const actualizarDatosUsuarios = async () =>{
         await editarUsuarios(
-            {   _id:usuario._id,
+            usuario._id,
+            {   
                 id_usuario: infoUsuario.id_usuario,
                 given_name: infoUsuario.given_name,
                 family_name: infoUsuario.family_name,
@@ -70,7 +71,7 @@ const FilaUsuarios = ({usuario})=>{
             <button className="checkButton" onClick={actualizarDatosUsuarios}>
                         <span className="material-icons">check</span></button></td>
             <td>
-            <button className="editButton" onClick={()=>setEdit(true)}> 
+            <button className="editButton" onClick={()=>setEdit(!edit)}> 
             <span className="material-icons">cancel</span></button></td>
                         
             </> 
@@ -155,11 +156,9 @@ const GestionarUsuarios = () => {
                             <div className="label">Ingresa el ID del usuario:</div>
                             <input id="busqueda" type="text"/>
                             {/* //value={busqueda} onChange={(e) => setBusqueda(e.target.value)} */}
-                            <button className="botonBuscar" type="submit">Buscar</button>
                         </li>
                     </ul>
                     <div className="productsTable">
-                    {/* <form ref={form} onSubmit={submitEdit}> */}
                         <table summary="Usuarios registrados" className="usersTable">
                             <caption></caption>
                                 <thead>
@@ -181,7 +180,7 @@ const GestionarUsuarios = () => {
                             })}
                             </tbody>
                         </table>
-                    {/* </form> */}
+                        <ToastContainer position='bottom-center' autoClose={5000} />
                 </div>
             </section>
         <Footer/>

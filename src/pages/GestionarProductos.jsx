@@ -38,11 +38,6 @@ const GestionarProductos = () => {
             setEjecutarConsulta(true);
         }
     }, [mostrarTablaProductos]);
-      
-
-    /*useEffect(() => {
-        setGestionarProductos(GestionarProductosBackend);
-    }, []);*/
 
     useEffect(() => {
         if (mostrarTablaProductos) {
@@ -111,7 +106,6 @@ const TablaProductos = ({ listaProductos, setEjecutarConsulta }) => {
                         onChange={(e) => setBusqueda(e.target.value)}
                         placeholder="Ingresa el dato"
                         />
-                        <button className="botonBuscar" type="submit">Buscar</button>
                     </li>
                 </ul>
                 <div className="productsTable">
@@ -138,19 +132,7 @@ const TablaProductos = ({ listaProductos, setEjecutarConsulta }) => {
                             })}
                         </tbody>
                     </table>
-                </div>
-                {/*<div>
-                    {productosFiltrados.map((el) => {
-                        return (
-                        <div>
-                        <span>{el.idProducto}</span>
-                        <span>{el.descripcion}</span>
-                        <span>{el.valor}</span>
-                        <span>{el.estado}</span>
-                        </div>  
-                        );
-                    })}
-                </div>*/}                 
+                </div>                
             </section>
             <Footer/>
         </div>
@@ -174,14 +156,12 @@ const FilaProducto = ({ producto, setEjecutarConsulta }) => {
 
     const actualizarProducto = async () => {
     //enviar la info al back y se define el método POST con import axios de utils/api
-    //****** AJUSTAR LA URL ******
     //async trabaja con await axios
     //enviar la info al back
     
         await editarProducto(
-            
-            {   
-                _id: producto._id,
+            producto._id,
+            {    
                 idProducto: infoNuevoProducto.idProducto,
                 descripcion: infoNuevoProducto.descripcion,
                 valor: infoNuevoProducto.valor,
