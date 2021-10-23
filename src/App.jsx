@@ -5,6 +5,7 @@ import GestionarProductos from './pages/GestionarProductos';
 import GestionarUsuarios from './pages/GestionarUsuarios';
 import './styles/App.css'
 import { Auth0Provider } from "@auth0/auth0-react";
+import RegistrarUsuario from './pages/RegistrarUsuario';
 
 import React from "react";
 import {
@@ -26,6 +27,10 @@ function App() {
 
          <Route path='/Index'>
           <Login />
+         </Route>
+
+         <Route path='/RegistrarUsuario'>
+          <RegistrarUsuario/>
          </Route>
 
          <Route path='/Ventas'>

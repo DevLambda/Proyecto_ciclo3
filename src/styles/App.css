@@ -164,14 +164,16 @@ font-family: 'Be Vietnam Pro', sans-serif;
 .tituloSeccion {
     font-size: 33px;
     font-weight: 800;
-    display: flex;
+    display: block;
+    color:#491391;
 }
 
 .descripcionSeccion {
     margin-top: 0.2em;
     font-weight: 700;
     font-size: 16px;
-    display: flex;
+    display: block;
+    color:#491391;
 }
 
 /*------------ Gestionar Productos / Landing(Tabla) --------------*/
@@ -416,6 +418,7 @@ tbody td {
     text-align:justify;
 }
 
+
 /*------------ Gestionar Productos / Registrar Nuevos Productos --------------*/
 
 
@@ -447,7 +450,7 @@ input[type=text], select, textarea {
     margin-top: 8px;
     margin-bottom: 16px;
     resize: vertical;
-    cursor: pointer;
+    cursor: auto;
 }
 
 input[type=number], select, textarea {
@@ -491,6 +494,7 @@ input[type=submit]:hover {
     height: 42px;
     width: 250px;
     cursor: pointer;
+    margin-top: 0.5em;
     }
     
 .botonGuardarProducto:hover {
@@ -761,4 +765,33 @@ input[type=date] {
 
 .hidden{
     display: none;
+}
+
+#email{
+    font-size: 14px;
+    width: 40em;
+    height: 45px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    resize: vertical;
+    cursor: auto; 
+}
+
+#registrarUsuarios{
+    margin-top:10em;
+    margin-left: 40em;
+    width: max-content;
+}
+
+#tituloSeccionUsuarios {
+    font-size: 33px;
+    font-weight: 800;
+    display: block;
+    color:#491391;
+    margin-left: 2em;
+    margin-bottom: 1em;
 }
