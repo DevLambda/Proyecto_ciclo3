@@ -65,6 +65,7 @@ const FilaUsuarios = ({usuario})=>{
                 <option disabled value={0}>Seleccione el estado</option>
                     <option>Aprobado</option>
                     <option>Pendiente</option>
+                    <option>No Aprobado</option>
             </select>
             </td>
             <td>

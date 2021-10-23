@@ -17,7 +17,7 @@ const RegistrarUsuario = () => {
         fd.forEach((value, key) => {
             nuevoUsuario[key] = value;
         });
-        //se define el método POST y la url 3001 (AQUÍ SE MUESTRAN DATOS)
+        //se define el método POST
         await registrarUsuarios(
             {
                 id_usuario: nuevoUsuario.id_usuario,
@@ -83,8 +83,8 @@ const RegistrarUsuario = () => {
                     
                     <button type="submit" className="botonGuardarProducto"> Guardar nuevo Usuario </button>
                     </form>
+                 <ToastContainer position='bottom-center' autoClose={4000} />    
             </div>
-        <ToastContainer position='bottom-center' autoClose={4000} />
     </div>
     );
 };
