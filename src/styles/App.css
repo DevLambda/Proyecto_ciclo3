@@ -415,7 +415,10 @@ tbody td {
 }
 
 #accion{
-    text-align:justify;
+    /*text-align:justify;
+    align-items: center;*/
+    display: flex;
+    justify-content: left;
 }
 
 
