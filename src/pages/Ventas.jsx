@@ -7,6 +7,7 @@ import { obtenerVentas, registrarVentas, editarVentas } from '../utils/api';
 import { obtenerProductos } from '../utils/api';
 import { obtenerUsuarios } from '../utils/api';
 import { nanoid } from 'nanoid';
+import { Link } from "react-router-dom";
 
 const Ventas = () => {
     const [Ventas, setVentas] = useState([]);
@@ -46,6 +47,7 @@ const Ventas = () => {
     return (
         <div>
             <div>
+            <Link to='/Ventas'>
                 <button
                     onClick={() => {
                         setMostrarTablaVentas(!mostrarTablaVentas)
@@ -53,6 +55,7 @@ const Ventas = () => {
                     className="botonCrear">
                     {textoBoton}
                 </button>
+                </Link>
             </div>
 
             {mostrarTablaVentas ? (<TablaVentas listaVentas={Ventas} setEjecutarConsulta={setEjecutarConsulta} />
