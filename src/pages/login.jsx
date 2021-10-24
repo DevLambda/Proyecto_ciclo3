@@ -23,12 +23,6 @@ function Login() {
                     <button className="botonlogin" type="submit" onClick={() => loginWithRedirect()} >Ingresa con Google</button>
                   </div>
               
-                <div id="g_id_onload"
-                  data-client_id="1062176196992-1b403cldkrck8tg2vqs57htuc4eptlrb.apps.googleusercontent.com"
-                  data-ux_mode="redirect"
-                  data-login_uri="https://www.example.com/your_login_endpoint">
-                </div>
-                <div className="g_id_signin" data-type="standard"></div>  
             </div>
          </div>
     </div>
