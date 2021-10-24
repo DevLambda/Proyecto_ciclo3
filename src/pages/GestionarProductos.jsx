@@ -118,6 +118,7 @@ const TablaProductos = ({ listaProductos, setEjecutarConsulta }) => {
                                 <th scope="col">Valor</th>
                                 <th scope="col">Estado</th>
                                 <th scope="col" id="accion">Acción</th>
+                                <th></th>
                             </tr>
                             </thead>
                         <tbody>
@@ -242,6 +243,7 @@ const FilaProducto = ({ producto, setEjecutarConsulta }) => {
                     <span className="material-icons">edit</span>
                     </button>
                 </td>
+                <td></td>
             </>
             )}
             
