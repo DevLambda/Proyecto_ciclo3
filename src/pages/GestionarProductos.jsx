@@ -252,7 +252,7 @@ const FilaProducto = ({ producto, setEjecutarConsulta }) => {
 
 /*------------ FORMULARIO Crear Nuevos Productos --------------*/
 
-const RegistrarProductos = ({ setMostrarTablaProductos, listaProductos, setProductos }) => {
+const RegistrarProductos = ({ setMostrarTablaProductos, listaProductos, setProductos}) => {
     const form = useRef(null);
 
     //async trabaja con await axios    
@@ -276,6 +276,7 @@ const RegistrarProductos = ({ setMostrarTablaProductos, listaProductos, setProdu
             (response) => {
               console.log(response.data);
               toast.success('Nuevo producto agregado con éxito');
+              
             },
             (error) => {
               console.error(error);

@@ -74,9 +74,10 @@ const FilaUsuarios = ({usuario})=>{
             <button className="checkButton" onClick={actualizarDatosUsuarios}>
                         <span className="material-icons">check</span></button></td>
             <td>
-            <button className="editButton" onClick={()=>setEdit(true)}> 
-            <span className="material-icons">cancel</span></button></td>
-                        
+            <button className="cancelButton" onClick={()=>setEdit(!edit)}> 
+                    <span className="material-icons">cancel</span>
+                    </button>
+            </td>          
             </> 
             ) : (
                     <> 
