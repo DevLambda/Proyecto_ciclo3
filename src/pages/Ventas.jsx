@@ -7,9 +7,8 @@ import { obtenerVentas, registrarVentas, editarVentas } from '../utils/api';
 import { obtenerProductos } from '../utils/api';
 import { obtenerUsuarios } from '../utils/api';
 import { nanoid } from 'nanoid';
-import { Link } from "react-router-dom";
 
-const Ventas = () => {
+const Ventas = ({actualizarVenta}) => {
     const [Ventas, setVentas] = useState([]);
     const [mostrarTablaVentas, setMostrarTablaVentas] = useState(true);
     const [textoBoton, setTextoBoton] = useState('Registrar Venta');
@@ -47,15 +46,16 @@ const Ventas = () => {
     return (
         <div>
             <div>
-            <Link to='/Ventas'>
+            
                 <button
                     onClick={() => {
-                        setMostrarTablaVentas(!mostrarTablaVentas)
+                        setMostrarTablaVentas(!mostrarTablaVentas);
+
+                        
                     }}
                     className="botonCrear">
                     {textoBoton}
                 </button>
-                </Link>
             </div>
 
             {mostrarTablaVentas ? (<TablaVentas listaVentas={Ventas} setEjecutarConsulta={setEjecutarConsulta} />
@@ -64,7 +64,7 @@ const Ventas = () => {
                 listaVentas={Ventas}
                 setVentas={setVentas} />
             )}
-            <ToastContainer position='bottom-center' autoClose={4000} />
+            <ToastContainer position='bottom-center' autoClose={1000} />
         </div>
     )
 }
@@ -161,9 +161,10 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
                 estado_venta: infoNuevaVenta.estado_venta,
             },
             (response) => {
-                toast.success('Venta editada con éxito');
+                toast.success('Venta editada con éxito'); 
                 setEdit(false);
                 setEjecutarConsulta(true);
+                
             },
             (error) => {
                 toast.error('Error actualizando venta');
@@ -302,9 +303,10 @@ const RegistrarVentas = () => {
             await registrarVentas(
                 datosVenta,
                 (response) => {
-                console.log(response);
+                toast.success('Venta editada con éxito'); 
                 },
                 (error) => {
+                toast.error('Error actualizando venta');
                 console.error(error);
                 }
             );
@@ -359,6 +361,7 @@ const RegistrarVentas = () => {
                         setProductosTabla={setProductosTabla}
                         />
                 <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>
+                
             </form>
         </section>
     <Footer />
