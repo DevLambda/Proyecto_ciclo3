@@ -53,8 +53,6 @@ const FilaUsuarios = ({usuario})=>{
             <td>{usuario.given_name}</td>
             <td>{usuario.family_name}</td>
             <td>{usuario.email}</td>
-            <td>{usuario.rol}</td>
-            <td>{usuario.estado}</td>
             <td>
              <select name="rol_usuario" className="listaUsuarios" required value={infoUsuario.rol} onChange={(e)=>setInfoUsuario({...infoUsuario, rol:e.target.value})} >
                 <option disabled value={0}> Selecciona un rol</option>
@@ -113,7 +111,7 @@ const GestionarUsuarios = () => {
             }
             );
             
-        }
+        };
 
     }, []);
 
