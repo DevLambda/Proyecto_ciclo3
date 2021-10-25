@@ -372,7 +372,7 @@ const RegistrarVentas = () => {
     );
 };
 
-//Esta función agrega los productos a comprar a la tabla, se habla con Registrar ventas
+//Esta función agrega los productos a comprar a la tabla, este componente se lee en la funcion RegistrarVentas
 const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
 
     const [productoAAgregar, setProductoAAgregar] = useState([]);
@@ -478,7 +478,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
         </div>
     );
 };
-//es el componente de las filas de productos que añade en la tabla productos
+//es el componente de las filas de productos que añade en la función TablaProductos
 const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
     
     const [producto, setProducto] = useState(pro);
