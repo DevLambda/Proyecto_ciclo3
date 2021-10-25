@@ -7,6 +7,7 @@ import { obtenerVentas, registrarVentas, editarVentas } from '../utils/api';
 import { obtenerProductos } from '../utils/api';
 import { obtenerUsuarios } from '../utils/api';
 import { nanoid } from 'nanoid';
+import accounting from "accounting";
 
 const Ventas = ({actualizarVenta}) => {
     const [Ventas, setVentas] = useState([]);
@@ -369,18 +370,23 @@ const RegistrarVentas = () => {
     );
 };
 
+//Esta función agrega los productos a comprar a la tabla
 const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
 
     const [productoAAgregar, setProductoAAgregar] = useState([]);
     const [filasTabla, setFilasTabla] = useState([]);  
     const [totalVenta, setTotalVenta] = useState(0);
     
+    /*Este use effect setea filas tabla y productos que se agregan a la tabla, 
+    dentro se hace el cálculo del total de la venta recorriendo las filas de la tabla 
+    y sumando el total de cada una*/
+
     useEffect(() => {
         let total=0;
         filasTabla.forEach( (f)=>{
             total =total+f.total;
         });
-        setTotalVenta(total);
+        setTotalVenta(accounting.formatMoney(total));
         setProductosTabla(filasTabla);
     }, [filasTabla, setProductosTabla]);
 
@@ -435,6 +441,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                 type="button" 
                 className="btn_new"  
                 onClick={()=> agregarProducto()}>
+                <i class="fas fa-plus"></i>
                 Agregar producto
             </button>
                 
@@ -466,7 +473,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                         })}
                     </tbody>
                 </table> 
-            <span name="total_venta" id="total">Total Venta {totalVenta}</span>              
+            <span name="total_venta" id="total">Total Venta: {totalVenta}</span>              
         </div>
     );
 };
@@ -481,7 +488,7 @@ const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
     
     return (
       <tr>
-        <td>{producto._id}</td>
+        <td>{producto.idProducto}</td>
         <td>{producto.descripcion}</td>
         <td>
           <label htmlFor={`valor_${index}`}>
@@ -504,8 +511,8 @@ const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
             />
           </label>
         </td>
-        <td>{producto.valor}</td>
-        <td>{parseFloat(producto.total ?? 0)}</td>
+        <td>{accounting.formatMoney(producto.valor)}</td>
+        <td>{accounting.formatMoney(parseFloat(producto.total ?? 0))}</td>
         <td>
           <i
             onClick={() => eliminarProducto(producto)}
