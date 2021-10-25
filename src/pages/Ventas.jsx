@@ -238,6 +238,7 @@ const RegistrarVentas = () => {
     const [vendedores, setVendedores] = useState([]);
     const [productos, setProductos] = useState([]);
     const [productosTabla, setProductosTabla] = useState([]);
+    const [totalVenta, setTotalVenta]=useState(0);
 
     useEffect(() => {
         //se leen los datos de usuarios de la base de datos
@@ -362,9 +363,10 @@ const RegistrarVentas = () => {
                         productos={productos}
                         setProductos={setProductos}
                         setProductosTabla={setProductosTabla}
+                        setTotalVenta={setTotalVenta}
                         />
-                <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>
-                
+                    <span name="total_venta" id="total">Total Venta: {accounting.formatMoney(totalVenta)}</span> <br/>
+                <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>    
             </form>
         </section>
     <Footer />
@@ -373,11 +375,10 @@ const RegistrarVentas = () => {
 };
 
 //Esta función agrega los productos a comprar a la tabla, este componente se lee en la funcion RegistrarVentas
-const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
+const TablaProductos= ({productos, setProductos, setProductosTabla, setTotalVenta})=>{
 
     const [productoAAgregar, setProductoAAgregar] = useState([]);
     const [filasTabla, setFilasTabla] = useState([]);  
-    const [totalVenta, setTotalVenta] = useState(0);
     
     /*Este use effect setea filas tabla y productos que se agregan a la tabla, 
     dentro se hace el cálculo del total de la venta recorriendo las filas de la tabla 
@@ -387,8 +388,8 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
         let total=0;
         filasTabla.forEach( (f)=>{
             total =total+f.total;
+            setTotalVenta(total);
         });
-        setTotalVenta(accounting.formatMoney(total));
         setProductosTabla(filasTabla);
     }, [filasTabla, setProductosTabla]);
 
@@ -474,7 +475,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                         })}
                     </tbody>
                 </table> 
-            <span name="total_venta" id="total">Total Venta: {totalVenta}</span>              
+            {/* <span name="total_venta" id="total">Total Venta: {totalVenta}</span>               */}
         </div>
     );
 };

@@ -3,6 +3,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function Login() {
   const { loginWithRedirect } = useAuth0();
+  // const { isAuthenticated } = useAuth0();
+  // console.log(isAuthenticated);
   return (
     <div>
         <div className="container">
@@ -19,7 +21,7 @@ function Login() {
                     <Link to='/RegistrarUsuario'><button className="botonlogin" type="submit">Regístrate</button><br/></Link>
                     <h3 id="h3">- Ó si ya tienes cuenta -</h3>
                   </div>
-                  <button className="botonlogin" type="submit" onClick={() => loginWithRedirect()}><i class="fab fa-google"></i>  Ingresa con Google</button>
+                  <button className="botonlogin" type="submit" onClick={() => loginWithRedirect()}> Ingresa con Google</button>
             </div>
          </div>
     </div>
