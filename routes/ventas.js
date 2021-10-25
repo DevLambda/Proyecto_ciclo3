@@ -30,6 +30,7 @@ recordRoutes.route('/ventas').get(async function (req, res) {
 // This section will help you create a new record.
 recordRoutes.route('/ventas/create').post(function (req, res) {
   const dbConnect = dbo.getDb();
+ 
   const ventas = {
     ced_cliente: req.body.ced_cliente,
     nombre_cliente: req.body.nombre_cliente,
@@ -38,7 +39,8 @@ recordRoutes.route('/ventas/create').post(function (req, res) {
     fecha_pago: req.body.fecha_pago,
     quantity: req.body.quantity,
     estado_venta: req.body.estado_venta,
-    // vendedor: req.body.given_name
+    totalVenta:req.body.totalVenta,
+    vendedor: req.body.vendedor
   };
 
   dbConnect.collection('ventas').insertOne(ventas, function (err, result) {
