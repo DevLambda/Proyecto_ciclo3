@@ -65,7 +65,7 @@ const Ventas = () => {
                 listaVentas={Ventas}
                 setVentas={setVentas} />
             )}
-            <ToastContainer position='bottom-center' autoClose={1000} />
+            <ToastContainer position='bottom-center' autoClose={3000} />
         </div>
     )
 }
@@ -149,7 +149,8 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
             estado_venta: Ventas.estado_venta,
             nombre_cliente: Ventas.nombre_cliente,
             vendedor:Ventas.estado_venta,
-            total_venta: Ventas.total_venta,
+            totalVenta: Ventas.totalVenta,
+            
         }
     );
 
@@ -198,8 +199,8 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
                         </select>
                     </td>
                     <td>{Ventas.nombre_cliente}</td>
-                    <td>{Ventas.estado_venta}</td>{/*aquí hay que poner para que traiga el nombre de vendedor*/}
-                    <td>{Ventas.total_venta}</td>
+                    <td>{Ventas.vendedor}</td>
+                    <td>{accounting.formatMoney(Ventas.totalVenta)}</td>
                     <td>
                         <button className="checkButton" onClick={actualizarVenta}>
                             <span className="material-icons">check</span></button>
@@ -218,8 +219,8 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
                     <td><label className={Ventas.estado_venta === 'Entregada' ? 'badgeAvailable' : Ventas.estado_venta === 'En Progreso' ? "badgeInProgress" : 'badgeNotAvailable'}>
                         {Ventas.estado_venta}</label></td>
                     <td>{Ventas.nombre_cliente}</td>
-                    <td>{Ventas.estado_venta}</td>{/*aquí va nombre vendedor*/}
-                    <td>{Ventas.total_venta}</td>
+                    <td>{Ventas.vendedor}</td>{/*aquí va nombre vendedor*/}
+                    <td>{accounting.formatMoney(Ventas.totalVenta)}</td>
                     <td><button className="editButton" onClick={() => setEdit(true)}>
                         <span className="material-icons">edit</span>
                     </button>
@@ -272,12 +273,14 @@ const RegistrarVentas = () => {
     const submitForm = async (e) => {
         e.preventDefault();
         const fd = new FormData(form.current);
+        console.log(form.current)
 
         const nuevaVenta = {};
         fd.forEach((value, key) => {
             nuevaVenta[key] = value;
         });
 
+        nuevaVenta['totalVenta']=totalVenta;
         console.log('form data', nuevaVenta);
 
         const listaProductos = Object.keys(nuevaVenta)
@@ -299,23 +302,23 @@ const RegistrarVentas = () => {
                 fecha_pago: nuevaVenta.fecha_pago,
                 productos: listaProductos,
                 quantity: nuevaVenta.quantity,
-                total_venta: nuevaVenta.total_venta, 
+                totalVenta: nuevaVenta.totalVenta, 
                 estado_venta:nuevaVenta.estado_venta,   
-                vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],  
+                vendedor: nuevaVenta.vendedor
             };
         //POST registrar ventas
             await registrarVentas(
                 datosVenta,
                 (response) => {
-                toast.success('Venta editada con éxito'); 
+                toast.success('Venta registrada con éxito'); 
                 },
                 (error) => {
-                toast.error('Error actualizando venta');
+                toast.error('Error registrando venta');
                 console.error(error);
                 }
             );
     };
-    
+ 
     return (
         <div>
             <Header />
@@ -352,7 +355,7 @@ const RegistrarVentas = () => {
                         <select id="listaProductos1" name="vendedor" required defaultValue="">
                             <option disabled value="">Seleccione un vendedor</option>
                             {vendedores.map((el)=>{
-                                    return (<option key={nanoid()} value={el._id}>{`${el.given_name} ${el.family_name}`}</option>)
+                                    return (<option key={nanoid()} value={`${el.given_name} ${el.family_name}`}>{`${el.given_name} ${el.family_name}`}</option>)
                                 })}
                         </select></label>
                     
@@ -366,7 +369,7 @@ const RegistrarVentas = () => {
                         setTotalVenta={setTotalVenta}
                         />
                     <span name="total_venta" id="total">Total Venta: {accounting.formatMoney(totalVenta)}</span> <br/>
-                <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>    
+                <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>  
             </form>
         </section>
     <Footer />
