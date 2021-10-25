@@ -9,7 +9,7 @@ import { obtenerUsuarios } from '../utils/api';
 import { nanoid } from 'nanoid';
 import accounting from "accounting";
 
-const Ventas = ({actualizarVenta}) => {
+const Ventas = () => {
     const [Ventas, setVentas] = useState([]);
     const [mostrarTablaVentas, setMostrarTablaVentas] = useState(true);
     const [textoBoton, setTextoBoton] = useState('Registrar Venta');
@@ -240,6 +240,7 @@ const RegistrarVentas = () => {
     const [productosTabla, setProductosTabla] = useState([]);
 
     useEffect(() => {
+        //se leen los datos de usuarios de la base de datos
         const fetchVendedores = async () => {
           await obtenerUsuarios(
             (response) => {
@@ -250,6 +251,7 @@ const RegistrarVentas = () => {
             }
           );
         };
+        //se leen los datos de productos de la base de datos
         const fetchProductos = async () => {
           await obtenerProductos(
             (response) => {
@@ -285,7 +287,8 @@ const RegistrarVentas = () => {
             return null;
         })
         .filter((v) => v);
-        
+    
+        //variable que contiene los datos de la venta a enviar
             const datosVenta = {
 
                 ced_cliente: nuevaVenta.ced_cliente,
@@ -299,8 +302,7 @@ const RegistrarVentas = () => {
                 estado_venta:nuevaVenta.estado_venta,   
                 vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],  
             };
-
-            //falta poner el TOASTgit
+        //POST registrar ventas
             await registrarVentas(
                 datosVenta,
                 (response) => {
@@ -370,7 +372,7 @@ const RegistrarVentas = () => {
     );
 };
 
-//Esta función agrega los productos a comprar a la tabla
+//Esta función agrega los productos a comprar a la tabla, se habla con Registrar ventas
 const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
 
     const [productoAAgregar, setProductoAAgregar] = useState([]);
@@ -412,7 +414,6 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
           })
         );
       };
-
 
     return (
         <div>
@@ -477,7 +478,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
         </div>
     );
 };
-
+//es el componente de las filas de productos que añade en la tabla productos
 const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
     
     const [producto, setProducto] = useState(pro);
