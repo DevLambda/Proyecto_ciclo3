@@ -234,6 +234,25 @@ font-family: 'Be Vietnam Pro', sans-serif;
    
 }
 
+.botonCrear2 {
+    
+    position: absolute;
+    top: 38%;
+    right: 4%;
+    background-color: #1BC628;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    border: 0px;
+    border-radius: 10px;
+    height: 42px;
+    width: 260px;
+    cursor: pointer;
+    right: 8em;
+    top: 10em; 
+}
+
+
 .botonCrear:hover {
     background-color: #00ac00
 }

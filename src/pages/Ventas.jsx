@@ -53,7 +53,7 @@ const Ventas = ({actualizarVenta}) => {
 
                         
                     }}
-                    className="botonCrear">
+                    className={textoBoton==='Volver a Gestionar Ventas'?'botonCrear2':'botonCrear'}>
                     {textoBoton}
                 </button>
             </div>
@@ -231,7 +231,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
 
 /*------------Registrar Ventas----------------------*/
 
-const RegistrarVentas = () => {
+const RegistrarVentas = ({totalVenta}) => {
 
     const form = useRef(null);
     const [vendedores, setVendedores] = useState([]);
@@ -272,9 +272,10 @@ const RegistrarVentas = () => {
         const nuevaVenta = {};
         fd.forEach((value, key) => {
             nuevaVenta[key] = value;
+            
         });
-
-        console.log('form data', nuevaVenta);
+        nuevaVenta['totalVenta']=totalVenta;
+        console.log('espia', nuevaVenta);
 
         const listaProductos = Object.keys(nuevaVenta)
         .map((k) => {
@@ -294,10 +295,13 @@ const RegistrarVentas = () => {
                 fecha_pago: nuevaVenta.fecha_pago,
                 productos: listaProductos,
                 quantity: nuevaVenta.quantity,
-                total_venta: nuevaVenta.total_venta, 
                 estado_venta:nuevaVenta.estado_venta,   
                 vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],  
             };
+
+            
+            
+
 
             //falta poner el TOASTgit
             await registrarVentas(
