@@ -219,7 +219,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
                     <td><label className={Ventas.estado_venta === 'Entregada' ? 'badgeAvailable' : Ventas.estado_venta === 'En Progreso' ? "badgeInProgress" : 'badgeNotAvailable'}>
                         {Ventas.estado_venta}</label></td>
                     <td>{Ventas.nombre_cliente}</td>
-                    <td>{Ventas.vendedor}</td>{/*aquí va nombre vendedor*/}
+                    <td>{Ventas.vendedor}</td>
                     <td>{accounting.formatMoney(Ventas.totalVenta)}</td>
                     <td><button className="editButton" onClick={() => setEdit(true)}>
                         <span className="material-icons">edit</span>
@@ -233,7 +233,7 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
 
 /*------------Registrar Ventas----------------------*/
 
-const RegistrarVentas = ({totalVenta}) => {
+const RegistrarVentas = () => {
 
     const form = useRef(null);
     const [vendedores, setVendedores] = useState([]);
