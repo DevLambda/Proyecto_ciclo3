@@ -280,14 +280,10 @@ const RegistrarVentas = ({totalVenta}) => {
             nuevaVenta[key] = value;
             
         });
-<<<<<<< HEAD
-        nuevaVenta['totalVenta']=totalVenta;
-        console.log('espia', nuevaVenta);
-=======
 
         nuevaVenta['totalVenta']=totalVenta;
         console.log('form data', nuevaVenta);
->>>>>>> 7b56e6e11ac8a2e5dd87ce229047e0cb90cba989
+
 
         const listaProductos = Object.keys(nuevaVenta)
         .map((k) => {
