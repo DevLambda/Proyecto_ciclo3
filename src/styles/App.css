@@ -113,7 +113,6 @@ font-family: 'Be Vietnam Pro', sans-serif;
     width: 16em;
     cursor: pointer;
     font-size: 18px;
-    justify-content: space-evenly;
     font-weight: 600;
   }
 
@@ -605,9 +604,6 @@ background-color: #ff790a;
 #detalle_venta tr{
 	background-color: #ffffff !important;
 }
-#detalle_venta td{
-	border-bottom: none;
-}
 
 #listaProductos1{
     width: 20em;
@@ -818,7 +814,7 @@ input[type=date] {
     margin-bottom: 1em;
 }
 
-#h2{
-    margin-left: 4.5em;
-    margin-top: 2em;
+#h3{
+    margin-left: 2em;
+    margin-top: 2.5em;
 }

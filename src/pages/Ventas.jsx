@@ -7,8 +7,9 @@ import { obtenerVentas, registrarVentas, editarVentas } from '../utils/api';
 import { obtenerProductos } from '../utils/api';
 import { obtenerUsuarios } from '../utils/api';
 import { nanoid } from 'nanoid';
+import accounting from "accounting";
 
-const Ventas = ({actualizarVenta}) => {
+const Ventas = () => {
     const [Ventas, setVentas] = useState([]);
     const [mostrarTablaVentas, setMostrarTablaVentas] = useState(true);
     const [textoBoton, setTextoBoton] = useState('Registrar Venta');
@@ -64,7 +65,7 @@ const Ventas = ({actualizarVenta}) => {
                 listaVentas={Ventas}
                 setVentas={setVentas} />
             )}
-            <ToastContainer position='bottom-center' autoClose={1000} />
+            <ToastContainer position='bottom-center' autoClose={3000} />
         </div>
     )
 }
@@ -148,7 +149,8 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
             estado_venta: Ventas.estado_venta,
             nombre_cliente: Ventas.nombre_cliente,
             vendedor:Ventas.estado_venta,
-            total_venta: Ventas.total_venta,
+            totalVenta: Ventas.totalVenta,
+            
         }
     );
 
@@ -197,8 +199,8 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
                         </select>
                     </td>
                     <td>{Ventas.nombre_cliente}</td>
-                    <td>{Ventas.estado_venta}</td>{/*aquí hay que poner para que traiga el nombre de vendedor*/}
-                    <td>{Ventas.total_venta}</td>
+                    <td>{Ventas.vendedor}</td>
+                    <td>{accounting.formatMoney(Ventas.totalVenta)}</td>
                     <td>
                         <button className="checkButton" onClick={actualizarVenta}>
                             <span className="material-icons">check</span></button>
@@ -217,8 +219,8 @@ const FilaVentas = ({ Ventas, setEjecutarConsulta}) => {
                     <td><label className={Ventas.estado_venta === 'Entregada' ? 'badgeAvailable' : Ventas.estado_venta === 'En Progreso' ? "badgeInProgress" : 'badgeNotAvailable'}>
                         {Ventas.estado_venta}</label></td>
                     <td>{Ventas.nombre_cliente}</td>
-                    <td>{Ventas.estado_venta}</td>{/*aquí va nombre vendedor*/}
-                    <td>{Ventas.total_venta}</td>
+                    <td>{Ventas.vendedor}</td>{/*aquí va nombre vendedor*/}
+                    <td>{accounting.formatMoney(Ventas.totalVenta)}</td>
                     <td><button className="editButton" onClick={() => setEdit(true)}>
                         <span className="material-icons">edit</span>
                     </button>
@@ -237,8 +239,10 @@ const RegistrarVentas = ({totalVenta}) => {
     const [vendedores, setVendedores] = useState([]);
     const [productos, setProductos] = useState([]);
     const [productosTabla, setProductosTabla] = useState([]);
+    const [totalVenta, setTotalVenta]=useState(0);
 
     useEffect(() => {
+        //se leen los datos de usuarios de la base de datos
         const fetchVendedores = async () => {
           await obtenerUsuarios(
             (response) => {
@@ -249,6 +253,7 @@ const RegistrarVentas = ({totalVenta}) => {
             }
           );
         };
+        //se leen los datos de productos de la base de datos
         const fetchProductos = async () => {
           await obtenerProductos(
             (response) => {
@@ -268,14 +273,21 @@ const RegistrarVentas = ({totalVenta}) => {
     const submitForm = async (e) => {
         e.preventDefault();
         const fd = new FormData(form.current);
+        console.log(form.current)
 
         const nuevaVenta = {};
         fd.forEach((value, key) => {
             nuevaVenta[key] = value;
             
         });
+<<<<<<< HEAD
         nuevaVenta['totalVenta']=totalVenta;
         console.log('espia', nuevaVenta);
+=======
+
+        nuevaVenta['totalVenta']=totalVenta;
+        console.log('form data', nuevaVenta);
+>>>>>>> 7b56e6e11ac8a2e5dd87ce229047e0cb90cba989
 
         const listaProductos = Object.keys(nuevaVenta)
         .map((k) => {
@@ -285,7 +297,8 @@ const RegistrarVentas = ({totalVenta}) => {
             return null;
         })
         .filter((v) => v);
-        
+    
+        //variable que contiene los datos de la venta a enviar
             const datosVenta = {
 
                 ced_cliente: nuevaVenta.ced_cliente,
@@ -295,27 +308,35 @@ const RegistrarVentas = ({totalVenta}) => {
                 fecha_pago: nuevaVenta.fecha_pago,
                 productos: listaProductos,
                 quantity: nuevaVenta.quantity,
+<<<<<<< HEAD
+=======
+                totalVenta: nuevaVenta.totalVenta, 
+>>>>>>> 7b56e6e11ac8a2e5dd87ce229047e0cb90cba989
                 estado_venta:nuevaVenta.estado_venta,   
-                vendedor: vendedores.filter((v) => v._id === nuevaVenta.vendedor)[0],  
+                vendedor: nuevaVenta.vendedor
             };
+<<<<<<< HEAD
 
             
             
 
 
             //falta poner el TOASTgit
+=======
+        //POST registrar ventas
+>>>>>>> 7b56e6e11ac8a2e5dd87ce229047e0cb90cba989
             await registrarVentas(
                 datosVenta,
                 (response) => {
-                toast.success('Venta editada con éxito'); 
+                toast.success('Venta registrada con éxito'); 
                 },
                 (error) => {
-                toast.error('Error actualizando venta');
+                toast.error('Error registrando venta');
                 console.error(error);
                 }
             );
     };
-    
+ 
     return (
         <div>
             <Header />
@@ -352,7 +373,7 @@ const RegistrarVentas = ({totalVenta}) => {
                         <select id="listaProductos1" name="vendedor" required defaultValue="">
                             <option disabled value="">Seleccione un vendedor</option>
                             {vendedores.map((el)=>{
-                                    return (<option key={nanoid()} value={el._id}>{`${el.given_name} ${el.family_name}`}</option>)
+                                    return (<option key={nanoid()} value={`${el.given_name} ${el.family_name}`}>{`${el.given_name} ${el.family_name}`}</option>)
                                 })}
                         </select></label>
                     
@@ -363,9 +384,10 @@ const RegistrarVentas = ({totalVenta}) => {
                         productos={productos}
                         setProductos={setProductos}
                         setProductosTabla={setProductosTabla}
+                        setTotalVenta={setTotalVenta}
                         />
-                <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>
-                
+                    <span name="total_venta" id="total">Total Venta: {accounting.formatMoney(totalVenta)}</span> <br/>
+                <button type="submit" className="btn_new"><i className="fas fa-edit"></i>Registrar venta</button>  
             </form>
         </section>
     <Footer />
@@ -373,18 +395,22 @@ const RegistrarVentas = ({totalVenta}) => {
     );
 };
 
-const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
+//Esta función agrega los productos a comprar a la tabla, este componente se lee en la funcion RegistrarVentas
+const TablaProductos= ({productos, setProductos, setProductosTabla, setTotalVenta})=>{
 
     const [productoAAgregar, setProductoAAgregar] = useState([]);
     const [filasTabla, setFilasTabla] = useState([]);  
-    const [totalVenta, setTotalVenta] = useState(0);
     
+    /*Este use effect setea filas tabla y productos que se agregan a la tabla, 
+    dentro se hace el cálculo del total de la venta recorriendo las filas de la tabla 
+    y sumando el total de cada una*/
+
     useEffect(() => {
         let total=0;
         filasTabla.forEach( (f)=>{
             total =total+f.total;
+            setTotalVenta(total);
         });
-        setTotalVenta(total);
         setProductosTabla(filasTabla);
     }, [filasTabla, setProductosTabla]);
 
@@ -410,7 +436,6 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
           })
         );
       };
-
 
     return (
         <div>
@@ -439,6 +464,7 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                 type="button" 
                 className="btn_new"  
                 onClick={()=> agregarProducto()}>
+                <i class="fas fa-plus"></i>
                 Agregar producto
             </button>
                 
@@ -470,11 +496,11 @@ const TablaProductos= ({productos, setProductos, setProductosTabla})=>{
                         })}
                     </tbody>
                 </table> 
-            <span name="total_venta" id="total">Total Venta {totalVenta}</span>              
+            {/* <span name="total_venta" id="total">Total Venta: {totalVenta}</span>               */}
         </div>
     );
 };
-
+//es el componente de las filas de productos que añade en la función TablaProductos
 const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
     
     const [producto, setProducto] = useState(pro);
@@ -485,7 +511,7 @@ const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
     
     return (
       <tr>
-        <td>{producto._id}</td>
+        <td>{producto.idProducto}</td>
         <td>{producto.descripcion}</td>
         <td>
           <label htmlFor={`valor_${index}`}>
@@ -508,8 +534,8 @@ const FilaProducto = ({ pro, index, eliminarProducto, modificarProducto }) => {
             />
           </label>
         </td>
-        <td>{producto.valor}</td>
-        <td>{parseFloat(producto.total ?? 0)}</td>
+        <td>{accounting.formatMoney(producto.valor)}</td>
+        <td>{accounting.formatMoney(parseFloat(producto.total ?? 0))}</td>
         <td>
           <i
             onClick={() => eliminarProducto(producto)}
