@@ -26,18 +26,18 @@ function App() {
       <Router>
         <Switch>
 
-         <Route path='/Index'>
+         {/* <Route path='/Index'>
           <Login />
-         </Route>
+         </Route> */}
 
          <Route path='/RegistrarUsuario'>
           <RegistrarUsuario/>
          </Route>
         
           <Route path='/Ventas'>
-          {/* <PrivateRoute> */}
-              <Ventas />
-          {/* </PrivateRoute> */}
+            {/* <PrivateRoute> */}
+                <Ventas />
+            {/* </PrivateRoute> */}
           </Route>
 
          <Route path='/GestionarProductos'>
