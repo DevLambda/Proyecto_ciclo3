@@ -100,6 +100,19 @@ const FilaUsuarios = ({usuario})=>{
 const GestionarUsuarios = () => {
 
     const [GestionarUsuarios, setGestionarUsuarios] = useState([]);
+    const [busqueda, setBusqueda] = useState('');
+    const [usuariosFiltrados, setUsuariosFiltrados] = useState(GestionarUsuarios);
+
+    useEffect(() => {
+        setUsuariosFiltrados(
+          GestionarUsuarios.filter((elemento) => {
+            return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
+          })
+        );
+        console.log(setUsuariosFiltrados, busqueda)
+
+    }, [busqueda, GestionarUsuarios]);
+
     useEffect(() => {
         if (GestionarUsuarios) {
             obtenerUsuarios((response) => {
@@ -126,8 +139,7 @@ const GestionarUsuarios = () => {
                     <ul className="posicionBuscador"> 
                         <li>
                             <div className="label">Ingresa el ID del usuario:</div>
-                            <input id="busqueda" type="text"/>
-                            {/* //value={busqueda} onChange={(e) => setBusqueda(e.target.value)} */}
+                            <input id="busqueda" type="text" value={busqueda} onChange={(e) => setBusqueda(e.target.value)}/>
                         </li>
                     </ul>
                     <div className="productsTable">
