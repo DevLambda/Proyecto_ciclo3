@@ -53,8 +53,6 @@ const FilaUsuarios = ({usuario})=>{
             <td>{usuario.given_name}</td>
             <td>{usuario.family_name}</td>
             <td>{usuario.email}</td>
-            <td>{usuario.rol}</td>
-            <td>{usuario.estado}</td>
             <td>
              <select name="rol_usuario" className="listaUsuarios" required value={infoUsuario.rol} onChange={(e)=>setInfoUsuario({...infoUsuario, rol:e.target.value})} >
                 <option disabled value={0}> Selecciona un rol</option>
@@ -74,9 +72,10 @@ const FilaUsuarios = ({usuario})=>{
             <button className="checkButton" onClick={actualizarDatosUsuarios}>
                         <span className="material-icons">check</span></button></td>
             <td>
-            <button className="editButton" onClick={()=>setEdit(true)}> 
-            <span className="material-icons">cancel</span></button></td>
-                        
+            <button className="cancelButton" onClick={()=>setEdit(!edit)}> 
+                    <span className="material-icons">cancel</span>
+                    </button>
+            </td>          
             </> 
             ) : (
                     <> 
@@ -88,7 +87,8 @@ const FilaUsuarios = ({usuario})=>{
                     <td><label className={usuario.estado==='Aprobado'?"badgeAvailable":"badgeNotAvailable"}>
                         {usuario.estado}</label></td>
                     <td><button className="editButton" onClick={()=>setEdit(true)}> 
-                        <span className="material-icons">edit</span></button></td>            
+                        <span className="material-icons">edit</span></button></td>
+                    <td></td>            
                 </>
             )
             }        
@@ -101,6 +101,19 @@ const FilaUsuarios = ({usuario})=>{
 const GestionarUsuarios = () => {
 
     const [GestionarUsuarios, setGestionarUsuarios] = useState([]);
+    const [busqueda, setBusqueda] = useState('');
+    const [usuariosFiltrados, setUsuariosFiltrados] = useState(GestionarUsuarios);
+
+    useEffect(() => {
+        setUsuariosFiltrados(
+          GestionarUsuarios.filter((elemento) => {
+            return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
+          })
+        );
+        console.log(setUsuariosFiltrados, busqueda)
+
+    }, [busqueda, GestionarUsuarios]);
+
     useEffect(() => {
         if (GestionarUsuarios) {
             obtenerUsuarios((response) => {
@@ -112,7 +125,7 @@ const GestionarUsuarios = () => {
             }
             );
             
-        }
+        };
 
     }, []);
 
@@ -127,8 +140,7 @@ const GestionarUsuarios = () => {
                     <ul className="posicionBuscador"> 
                         <li>
                             <div className="label">Ingresa el ID del usuario:</div>
-                            <input id="busqueda" type="text"/>
-                            {/* //value={busqueda} onChange={(e) => setBusqueda(e.target.value)} */}
+                            <input id="busqueda" type="text" value={busqueda} onChange={(e) => setBusqueda(e.target.value)}/>
                         </li>
                     </ul>
                     <div className="productsTable">
@@ -142,13 +154,17 @@ const GestionarUsuarios = () => {
                                     <th scope="col">Correo</th>
                                     <th scope="col">Rol</th>
                                     <th scope="col">Estado solicitud</th>
-                                    <th scope="col" id="acciones">Acción</th> 
+                                    <th scope="col" id="acciones">Acción</th>
+                                    <th></th> 
                                 </tr>
                                 </thead>
                             <tbody>
-                            {GestionarUsuarios.map((usuario) => {
+                            {usuariosFiltrados.map((usuario) => {
                                 return (
-                                    <FilaUsuarios key={nanoid()} usuario={usuario}/>
+                                    <FilaUsuarios
+                                    key={nanoid()}
+                                    usuario={usuario}
+                                    />
                                 );
                             })}
                             </tbody>

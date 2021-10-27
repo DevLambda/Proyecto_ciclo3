@@ -2,6 +2,8 @@ import {registrarUsuarios} from '../utils/api';
 import React, {useRef} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GestionarUsuarios from './GestionarUsuarios';
+import { Link } from "react-router-dom";
 
 /*------------ FORMULARIO Crear Nuevos Usuarios --------------*/
 const RegistrarUsuario = () => {
@@ -43,6 +45,16 @@ const RegistrarUsuario = () => {
     
     return(
         <div id="registrarUsuarios"> 
+
+            <div>
+                <Link to ='/'>
+                <button
+                className="botonCrear">                
+                Volver a Login
+                </button>
+                </Link>
+            </div>
+
                 <div id="tituloSeccionUsuarios">
                     <span>Registrar nuevo Usuario</span>
                     <span className="descripcionSeccion">Ingresa los datos del nuevo Usuario.</span>

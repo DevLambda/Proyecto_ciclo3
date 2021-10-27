@@ -113,7 +113,6 @@ font-family: 'Be Vietnam Pro', sans-serif;
     width: 16em;
     cursor: pointer;
     font-size: 18px;
-    justify-content: space-evenly;
     font-weight: 600;
   }
 
@@ -231,10 +230,29 @@ font-family: 'Be Vietnam Pro', sans-serif;
     cursor: pointer;
     right: 4.8em;
     top: 15em;
-   
 }
 
 .botonCrear:hover {
+    background-color: #00ac00
+}
+
+.botonCrear2 {  
+    position: absolute;
+    margin-top: 2em;
+    background-color: #1BC628;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    border: 0px;
+    border-radius: 10px;
+    height: 42px;
+    width: 260px;
+    cursor: pointer;
+    right: 8em;
+    top: 10em; 
+}
+
+.botonCrear2:hover {
     background-color: #00ac00
 }
 
@@ -443,6 +461,7 @@ tbody td {
 }
 
 input[type=text], select, textarea {
+    display: block;
     font-size: 14px;
     width: 40em;
     height: 45px;
@@ -501,7 +520,7 @@ input[type=submit]:hover {
     }
     
 .botonGuardarProducto:hover {
-background-color: #ff790a;
+    background-color: #ff790a;
 }
 
 /*--------Tabla usuarios--------*/
@@ -531,44 +550,106 @@ background-color: #ff790a;
 
 }
 
-  /*============ Ventas ============*/
+/*============ Ventas ============*/
 
-  .contenedorFormVentas{
-      width: max-content;
-      margin-left: 4.5em;
-  }
+/*****
+.datosCliente1{
+    display: block;
+    float:left;
+    width: 50%;
+}
+.datosVenta1{
+    display: block;
+    float:right;
+    width: 50%;    
+}
+******/
 
-  .datos_cliente, .datos_venta, .title_page, .tbl_venta{
-	margin: auto;
-	margin-bottom: 20px;
+fieldset{
+    display: block;
+    width: auto;
+    border: none;
+    margin-bottom: 0em;     
 }
 
+
+fieldset label{
+    display: block;
+    float: left;
+    margin-left: 1em;
+     
+}
+
+.contenedorFormVentas{
+    display: block;
+    margin-top: 2.6em;
+    margin-left: 4.2rem;
+    margin-right: 8rem;
+    justify-content: space-between;
+    
+}
+
+#labelVendedor{
+    display: block;
+}
+
+.listaProductos1{ 
+    display: block;
+}
+/*****
+.contenedorFormVentas{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    max-width: 600px;
+    margin-left: 3.1rem;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.datos_cliente, .datos_venta, .title_page, .tbl_venta{
+    display: block;
+	margin-bottom: 20px;
+}
+******/
+
 #input_ventas{
+    display: block;
     font-size: 14px;
-    width: 20em;
+    width: 24em;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 10px;
     margin-top: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 5px;
     resize: vertical;
-    margin-left: 8px;
     cursor:auto;
   }
 
 #input_fecha{
+    display: block;
     font-size: 14px;
-    width: 18em;
-    padding: 12px;
+    width: 15em;
+    height: 30px;
+    padding-left: 10px;
+    padding-top: 8px;
     border: 1px solid #ccc;
     border-radius: 10px;
     margin-top: 8px;
-    margin-bottom: 16px;
-    resize: vertical;
     margin-left: 8px;
+    margin-bottom: 10px;
     cursor:auto;
 }
 
+hr {
+    margin-right: auto;
+    margin-left: 1em;
+    justify-self: left;
+    display: block;
+    border: 0.5px solid rgb(192, 192, 192); 
+    height:0;
+}
+/****
 .div_registro_cliente{
 	border: 1px solid #FFFFFF;
 	color: #FFFFFF;
@@ -586,13 +667,11 @@ background-color: #ff790a;
 #detalle_venta tr{
 	background-color: #ffffff !important;
 }
-#detalle_venta td{
-	border-bottom: none;
-}
 
 #listaProductos1{
     width: 20em;
 }
+
 .datos{
 	background-color: #F0F2F4;
 	display: flex;
@@ -605,14 +684,16 @@ background-color: #ff790a;
 #label{
  margin-left: 8px;
 }
+*****/
 
- h4{
-     margin-bottom: auto;
-     color:#401081;
-     font-size:16px;
-     margin-top: 2em;
- }
-
+h4{
+    margin-top: 0,5em;
+    margin-bottom: 0.5em;
+    color:#401081;
+    font-size:18px;
+    font-weight: 800;
+}
+/****
 .action_cliente{
 	display: -webkit-flex;
 	display: -moz-flex;
@@ -654,25 +735,43 @@ background-color: #ff790a;
     text-decoration: none;
     font-size: 20px;
     margin-bottom: 5em;
-
 }
+****/
+
 .btn_new{
+    display: block;
+    margin-left:auto;
+    margin-top: 1.8em;
+    margin-bottom: 1.5em;
 	background-color: #401081;
-	border: 1px;
-	border-radius: 5px;
+	font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    height: 42px;
+    width: 250px;
 	cursor: pointer;
-	padding: 9px;
-	height: auto; 
-	width: auto;
 	color: #FFF;
-	opacity: 1;
+    /***********
     margin-top: 2em;
     margin-left: 27em;
-    text-decoration: none;
-    font-size: 20px;
     margin-bottom: 5em;
+    ***********/   
 } 
 
+.btn_new:hover {
+    background-color: #5e5e5e;
+}
+
+.far {
+    cursor: pointer;
+    color: #5e5e5e;
+}
+
+.far:hover {
+    color: #ff0000;    
+}
+/***********
 #div_registro_cliente, #add_product_venta{
 	display: none;
 }
@@ -695,6 +794,7 @@ background-color: #ff790a;
 .textleft{
 	text-align: left;
 }
+
 .link_add{
 	background-color: #401081;
 	border: 0;
@@ -707,25 +807,46 @@ background-color: #ff790a;
 	color: #FFF;
 	opacity: 1;
 }
+
 .botonesVenta{
     margin-left: 32em;
 }
-
+#wd140{
+	width: 40em;
+}
+***********/
 
 #t_ventas {
     width: auto;
 }
 
-#wd140{
-	width: 40em;
+.btn_registrar_venta{
+    display: block;
+    margin-left:auto;
+    margin-bottom: 2.4em;
+	background-color: #1BC628;
+	font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    height: 42px;
+    width: 250px;
+	cursor: pointer;
+	color: #FFF;
+
+}
+
+.btn_registrar_venta:hover{
+    background-color: #00ac00;
 }
 
 /*---------USUARIOS------------*/
 
 .listaUsuarios{
     width: auto;
-    height: 40px;
-    padding: auto;
+    height: auto;
+    padding: 9px;
+    
 }
 
 #acciones{
@@ -738,7 +859,7 @@ background-color: #ff790a;
 
 input[type=date] {
     width: auto;
-    height: 35px;
+    height: 30px;
     font-size: 14px;
     padding: 4px;
     padding-left: 10px;
@@ -759,11 +880,9 @@ input[type=date] {
 }
 
 #total{
-    font-size: 25px;
-    margin-left: 21em;
-    margin-top: 1em;
-    font-weight: bolder;
-    display:inline-flex;
+    font-size: 28px;
+    margin-top: 0.2em;
+    font-weight:900;
 }
 
 .hidden{
@@ -799,7 +918,7 @@ input[type=date] {
     margin-bottom: 1em;
 }
 
-#h2{
-    margin-left: 4.5em;
-    margin-top: 2em;
+#h3{
+    margin-left: 2em;
+    margin-top: 2.5em;
 }
